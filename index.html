@@ -113,7 +113,18 @@
  .cp-qty{font-size:9px;font-weight:700;color:var(--mid);text-transform:uppercase;letter-spacing:.04em}
  .cp-val{font-size:13px;font-weight:700;color:var(--pink-deep);font-family:'Playfair Display',serif}
  @media(max-width:600px){.card-prices{grid-template-columns:repeat(2,1fr)}}
-.owner-carousel{position:relative;width:220px;height:280px;border-radius:16px;overflow:hidden;border:4px solid var(--pink-soft);box-shadow:0 6px 28px rgba(214,51,132,0.6);flex-shrink:0;margin:0 auto}.carousel-slides{width:100%;height:100%}.carousel-slide{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:top center;opacity:0;transition:opacity 0.5s ease}.carousel-slide.active{opacity:1}@media(max-width:600px){.owner-carousel{width:160px;height:200px;border-radius:12px}}</style>
+.owner-carousel{position:relative;width:220px;height:280px;border-radius:16px;overflow:hidden;border:4px solid var(--pink-soft);box-shadow:0 6px 28px rgba(214,51,132,0.6);flex-shrink:0;margin:0 auto}.carousel-slides{width:100%;height:100%}.carousel-slide{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:top center;opacity:0;transition:opacity 0.5s ease}.carousel-slide.active{opacity:1}@media(max-width:600px){.owner-carousel{width:160px;height:200px;border-radius:12px}}
+/* ===== LIGHTBOX ===== */
+#lb-overlay{display:none;position:fixed;inset:0;background:rgba(0,0,0,.88);z-index:9999;align-items:center;justify-content:center;padding:16px;}
+#lb-overlay.open{display:flex;}
+#lb-overlay img{max-width:92vw;max-height:88vh;border-radius:12px;box-shadow:0 8px 40px rgba(0,0,0,.6);object-fit:contain;}
+#lb-close{position:fixed;top:16px;right:22px;color:#fff;font-size:36px;cursor:pointer;line-height:1;z-index:10000;user-select:none;}
+.card-img{cursor:zoom-in;}
+
+/* ===== WA BUTTON ===== */
+.wa-cotizar{display:block;margin-top:10px;background:#25d366;color:#fff;font-size:13px;font-weight:700;padding:9px 14px;border-radius:22px;text-decoration:none;text-align:center;transition:background .2s;}
+.wa-cotizar:hover{background:#1da851;}
+</style>
 </head>
 <body>
 
@@ -863,6 +874,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Mickey%20Safari%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -877,6 +889,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Plim%20Plim%20Ni%C3%B1o%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -891,6 +904,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Abejita%20Lilas%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -905,6 +919,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Plim%20Plim%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -919,6 +934,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Plim%20Plim%20Azul%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -933,6 +949,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Goku%20%E2%80%94%20Primer%20Cumplea%C3%B1os%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -947,6 +964,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Abejita%20Azul%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -961,6 +979,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Conejita%20Rosa%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -975,6 +994,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Jirafita%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -989,6 +1009,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Leoncito%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1003,6 +1024,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Abejita%20Celeste%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1017,6 +1039,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Safari%20Animales%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1031,6 +1054,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20F%C3%B3rmula%201%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1045,6 +1069,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Margaritas%20Rosa%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1059,6 +1084,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Margaritas%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1073,6 +1099,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Princesas%20Disney%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1087,6 +1114,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Plim%20Plim%20Ni%C3%B1a%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1101,6 +1129,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Abejita%20Pastel%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1115,6 +1144,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Mickey%20(variante)%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1129,6 +1159,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Safari%20Animales%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1143,6 +1174,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Dinosaurios%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1157,6 +1189,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Princesas%20Disney%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1171,6 +1204,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Zorro%20Dormido%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1185,6 +1219,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Winnie%20Pooh%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1199,6 +1234,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Safari%203D%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1213,6 +1249,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Monito%20Tropical%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1227,6 +1264,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Dinosaurios%20Color%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1241,6 +1279,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Paw%20Patrol%20Rocky%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1255,6 +1294,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Baby%20Mickey%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1269,6 +1309,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Mariposas%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
   </div>
@@ -1287,6 +1328,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Safari%20Animales%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1301,6 +1343,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Owen%20%E2%80%94%20Gohan%20Dragon%20Ball%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1315,6 +1358,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20M%C3%A1ximo%20%E2%80%94%20Safari%20Mix%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1329,6 +1373,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Luana%20%2F%20Abejita%20%E2%80%94%20Flor%20y%20N%C3%BAmero%201%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1343,6 +1388,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Tiziano%20%E2%80%94%20McQueen%20Cars%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1357,6 +1403,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Hannah%20%E2%80%94%20Abejita%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1371,6 +1418,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Annie%20%E2%80%94%20Bambi%20con%20Flores%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1385,6 +1433,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Francesca%20%E2%80%94%20Abejita%20N%C3%BAmero%201%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1399,6 +1448,7 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
+        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Mateo%20%E2%80%94%20Plim%20Plim%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
   </div>
@@ -2306,5 +2356,26 @@
  btn.classList.add('active');
  }
 </script>
-<script src="nina.js"></script><script>var cs=document.querySelectorAll('.carousel-slide'),ci=0;setInterval(function(){cs[ci].classList.remove('active');ci=(ci+1)%cs.length;cs[ci].classList.add('active');},2000);</script></body>
+<script src="nina.js"></script><script>var cs=document.querySelectorAll('.carousel-slide'),ci=0;setInterval(function(){cs[ci].classList.remove('active');ci=(ci+1)%cs.length;cs[ci].classList.add('active');},2000);</script>
+<!-- LIGHTBOX -->
+<div id="lb-overlay"><span id="lb-close">&#10005;</span><img id="lb-img" src="" alt=""></div>
+<script>
+(function(){
+  // Lightbox
+  var ov=document.getElementById('lb-overlay'),
+      im=document.getElementById('lb-img'),
+      cl=document.getElementById('lb-close');
+  document.querySelectorAll('.card-img').forEach(function(img){
+    img.addEventListener('click',function(){
+      im.src=this.src; im.alt=this.alt;
+      ov.classList.add('open');
+    });
+  });
+  function close(){ov.classList.remove('open');im.src='';}
+  cl.addEventListener('click',close);
+  ov.addEventListener('click',function(e){if(e.target===ov)close();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+})();
+</script>
+</body>
 </html>

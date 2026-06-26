@@ -124,6 +124,23 @@
 /* ===== WA BUTTON ===== */
 .wa-cotizar{display:block;margin-top:10px;background:#25d366;color:#fff;font-size:13px;font-weight:700;padding:9px 14px;border-radius:22px;text-decoration:none;text-align:center;transition:background .2s;}
 .wa-cotizar:hover{background:#1da851;}
+
+/* ===== BUSCADOR ===== */
+.search-wrap{margin:16px 40px 0;position:relative;}
+.search-wrap input{width:100%;padding:12px 18px 12px 44px;font-size:14px;border:2px solid var(--border);border-radius:30px;outline:none;font-family:'Inter',sans-serif;background:var(--white);color:var(--charcoal);transition:border-color .2s;}
+.search-wrap input:focus{border-color:var(--pink-deep);}
+.search-wrap .search-icon{position:absolute;left:16px;top:50%;transform:translateY(-50%);font-size:18px;color:var(--light);}
+.card.hidden{display:none;}
+.no-results{text-align:center;padding:40px;color:var(--light);font-size:15px;display:none;}
+.no-results.show{display:block;}
+@media(max-width:600px){.search-wrap{margin:12px 12px 0;}}
+
+/* ===== SELECTOR CANTIDAD ===== */
+.qty-selector{margin-top:10px;}
+.qty-selector label{font-size:11px;font-weight:700;color:var(--mid);text-transform:uppercase;letter-spacing:.06em;display:block;margin-bottom:5px;}
+.qty-selector select{width:100%;padding:8px 10px;border:2px solid var(--border);border-radius:8px;font-size:13px;font-weight:600;color:var(--charcoal);background:var(--white);cursor:pointer;outline:none;font-family:'Inter',sans-serif;}
+.qty-selector select:focus{border-color:var(--pink-deep);}
+.precio-dinamico{margin-top:8px;font-size:15px;font-weight:700;color:var(--pink-deep);font-family:'Playfair Display',serif;}
 </style>
 </head>
 <body>
@@ -160,6 +177,15 @@
     <span class="tab-icon">🔑</span> Llaveros
   </button>
 </div>
+
+<!-- BUSCADOR -->
+<div class="search-wrap">
+  <span class="search-icon">🔍</span>
+  <input type="text" id="buscador" placeholder="Buscar producto por nombre..." oninput="buscarProductos(this.value)">
+</div>
+<p class="no-results" id="no-results">No se encontraron productos con ese nombre.</p>
+
+
 
 <div id="tab-primer-ano" class="section active">
   <div class="grid">
@@ -874,7 +900,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Mickey%20Safari%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_0" onchange="actualizarPrecio('card_0', 'Mickey Safari')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_0">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_0" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Mickey%20Safari%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -889,7 +925,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Plim%20Plim%20Ni%C3%B1o%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_1801" onchange="actualizarPrecio('card_1801', 'Plim Plim Niño')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_1801">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_1801" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Plim%20Plim%20Ni%C3%B1o%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -904,7 +950,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Abejita%20Lilas%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_3577" onchange="actualizarPrecio('card_3577', 'Abejita Lilas')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_3577">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_3577" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Abejita%20Lilas%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -919,7 +975,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Plim%20Plim%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_5332" onchange="actualizarPrecio('card_5332', 'Plim Plim')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_5332">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_5332" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Plim%20Plim%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -934,7 +1000,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Plim%20Plim%20Azul%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_7090" onchange="actualizarPrecio('card_7090', 'Plim Plim Azul')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_7090">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_7090" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Plim%20Plim%20Azul%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -949,7 +1025,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Goku%20%E2%80%94%20Primer%20Cumplea%C3%B1os%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_8851" onchange="actualizarPrecio('card_8851', 'Goku — Primer Cumpleaños')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_8851">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_8851" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Goku%20%E2%80%94%20Primer%20Cumplea%C3%B1os%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -964,7 +1050,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Abejita%20Azul%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_10673" onchange="actualizarPrecio('card_10673', 'Abejita Azul')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_10673">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_10673" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Abejita%20Azul%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -979,7 +1075,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Conejita%20Rosa%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_12422" onchange="actualizarPrecio('card_12422', 'Conejita Rosa')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_12422">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_12422" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Conejita%20Rosa%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -994,7 +1100,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Jirafita%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_14166" onchange="actualizarPrecio('card_14166', 'Jirafita')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_14166">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_14166" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Jirafita%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1009,7 +1125,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Leoncito%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_15905" onchange="actualizarPrecio('card_15905', 'Leoncito')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_15905">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_15905" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Leoncito%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1024,7 +1150,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Abejita%20Celeste%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_17643" onchange="actualizarPrecio('card_17643', 'Abejita Celeste')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_17643">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_17643" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Abejita%20Celeste%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1039,7 +1175,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Safari%20Animales%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_19400" onchange="actualizarPrecio('card_19400', 'Safari Animales')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_19400">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_19400" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Safari%20Animales%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1054,7 +1200,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20F%C3%B3rmula%201%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_21143" onchange="actualizarPrecio('card_21143', 'Fórmula 1')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_21143">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_21143" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20F%C3%B3rmula%201%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1069,7 +1225,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Margaritas%20Rosa%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_22891" onchange="actualizarPrecio('card_22891', 'Margaritas Rosa')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_22891">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_22891" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Margaritas%20Rosa%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1084,7 +1250,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Margaritas%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_24647" onchange="actualizarPrecio('card_24647', 'Margaritas')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_24647">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_24647" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Margaritas%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1099,7 +1275,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Princesas%20Disney%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_26381" onchange="actualizarPrecio('card_26381', 'Princesas Disney')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_26381">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_26381" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Princesas%20Disney%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1114,7 +1300,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Plim%20Plim%20Ni%C3%B1a%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_28168" onchange="actualizarPrecio('card_28168', 'Plim Plim Niña')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_28168">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_28168" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Plim%20Plim%20Ni%C3%B1a%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1129,7 +1325,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Abejita%20Pastel%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_29940" onchange="actualizarPrecio('card_29940', 'Abejita Pastel')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_29940">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_29940" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Abejita%20Pastel%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1144,7 +1350,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Mickey%20(variante)%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_31708" onchange="actualizarPrecio('card_31708', 'Mickey (variante)')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_31708">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_31708" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Mickey%20(variante)%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1159,7 +1375,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Safari%20Animales%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_33495" onchange="actualizarPrecio('card_33495', 'Safari Animales')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_33495">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_33495" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Safari%20Animales%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1174,7 +1400,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Dinosaurios%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_35258" onchange="actualizarPrecio('card_35258', 'Dinosaurios')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_35258">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_35258" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Dinosaurios%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1189,7 +1425,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Princesas%20Disney%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_37015" onchange="actualizarPrecio('card_37015', 'Princesas Disney')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_37015">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_37015" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Princesas%20Disney%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1204,7 +1450,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Zorro%20Dormido%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_38779" onchange="actualizarPrecio('card_38779', 'Zorro Dormido')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_38779">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_38779" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Zorro%20Dormido%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1219,7 +1475,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Winnie%20Pooh%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_40538" onchange="actualizarPrecio('card_40538', 'Winnie Pooh')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_40538">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_40538" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Winnie%20Pooh%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1234,7 +1500,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Safari%203D%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_42285" onchange="actualizarPrecio('card_42285', 'Safari 3D')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_42285">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_42285" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Safari%203D%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1249,7 +1525,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Monito%20Tropical%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_44041" onchange="actualizarPrecio('card_44041', 'Monito Tropical')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_44041">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_44041" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Monito%20Tropical%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1264,7 +1550,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Dinosaurios%20Color%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_45814" onchange="actualizarPrecio('card_45814', 'Dinosaurios Color')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_45814">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_45814" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Dinosaurios%20Color%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1279,7 +1575,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Paw%20Patrol%20Rocky%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_47556" onchange="actualizarPrecio('card_47556', 'Paw Patrol Rocky')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_47556">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_47556" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Paw%20Patrol%20Rocky%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1294,7 +1600,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Baby%20Mickey%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_49327" onchange="actualizarPrecio('card_49327', 'Baby Mickey')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_49327">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_49327" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Baby%20Mickey%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
     <div class="card">
@@ -1309,7 +1625,17 @@
           <div class="cp-item"><span class="cp-qty">½ Ciento</span><span class="cp-val">S/ 185</span></div>
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
-        <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Mariposas%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+        <div class="qty-selector">
+          <label>Selecciona cantidad:</label>
+          <select id="sel_card_51084" onchange="actualizarPrecio('card_51084', 'Mariposas')">
+            <option value="50" data-label="Docena">Docena — S/ 50</option>
+            <option value="95" data-label="Cuarto de Ciento">Cuarto de Ciento — S/ 95</option>
+            <option value="185" data-label="Medio Ciento">Medio Ciento — S/ 185</option>
+            <option value="350" data-label="Ciento" selected>Ciento — S/ 350</option>
+          </select>
+          <p class="precio-dinamico" id="precio_card_51084">Total: S/ 350</p>
+        </div>
+        <a class="wa-cotizar" id="wa_card_51084" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Mariposas%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
   </div>
@@ -2376,6 +2702,38 @@
   ov.addEventListener('click',function(e){if(e.target===ov)close();});
   document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
 })();
+</script>
+
+<script>
+// ===== SELECTOR CANTIDAD =====
+function actualizarPrecio(uid, nombre) {
+  var sel = document.getElementById('sel_' + uid);
+  var opt = sel.options[sel.selectedIndex];
+  var precio = opt.value;
+  var label = opt.getAttribute('data-label');
+  document.getElementById('precio_' + uid).textContent = 'Total: S/ ' + precio;
+  var msg = encodeURIComponent('Hola, quiero cotizar: ' + nombre + ' — Cantidad: ' + label + ' — Precio: S/ ' + precio);
+  document.getElementById('wa_' + uid).href = 'https://wa.me/51900007660?text=' + msg;
+}
+
+// ===== BUSCADOR =====
+function buscarProductos(query) {
+  var q = query.toLowerCase().trim();
+  var cards = document.querySelectorAll('.section.active .card');
+  var found = 0;
+  cards.forEach(function(card) {
+    var name = card.querySelector('.card-name');
+    if (!name) return;
+    if (!q || name.textContent.toLowerCase().includes(q)) {
+      card.classList.remove('hidden');
+      found++;
+    } else {
+      card.classList.add('hidden');
+    }
+  });
+  var noRes = document.getElementById('no-results');
+  if (noRes) noRes.classList.toggle('show', found === 0 && q.length > 0);
+}
 </script>
 </body>
 </html>

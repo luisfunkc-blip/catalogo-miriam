@@ -35,19 +35,56 @@
  border-radius:50%; overflow:hidden; border:3px solid var(--pink-soft);
  flex-shrink:0; box-shadow:0 4px 20px rgba(214,51,132,0.4);
  }.logo-wrap img { width:100%; height:100%; object-fit:cover; }.header-text { position:relative; z-index:1; }.eyebrow { font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--pink-soft); margin-bottom:8px; }.brand { font-family:'Playfair Display',serif; font-size:clamp(22px,4vw,38px); font-weight:600; line-height:1.2; margin-bottom:6px; }.brand em { font-style:italic; color:var(--pink-soft); }.tagline { font-size:13px; font-weight:400; color:rgba(255,255,255,0.7); }.nav-tabs {
- display:flex; margin:28px 40px 0;
- border-radius:10px; overflow:hidden;
- border:2px solid var(--border);
- box-shadow:0 2px 12px rgba(214,51,132,.08);
- }.tab-btn {
- flex:1; padding:14px 8px;
- font-size:13px; font-weight:600;
- background:var(--white); color:var(--mid);
- border:none; cursor:pointer;
- border-right:2px solid var(--border);
- transition:background.2s,color.2s;
- display:flex; align-items:center; justify-content:center; gap:6px;
- }.tab-btn:last-child { border-right:none; }.tab-btn:hover { background:var(--pink-pale); color:var(--pink-deep); }.tab-btn.active { background:linear-gradient(135deg,var(--pink-deep),var(--lilac)); color:#fff; }.tab-icon { font-size:16px; }.section { display:none; }.section.active { display:block; }.grid {
+  display:flex; margin:28px 40px 0;
+  border-radius:14px; overflow:hidden;
+  border:none;
+  box-shadow:0 4px 24px rgba(0,0,0,.18);
+  gap:0;
+}
+.tab-btn {
+  flex:1; padding:16px 8px 14px;
+  font-size:12.5px; font-weight:700;
+  background:#fff; color:#555;
+  border:none; cursor:pointer;
+  border-right:2px solid rgba(0,0,0,.06);
+  transition:all .22s cubic-bezier(.4,0,.2,1);
+  display:flex; flex-direction:column; align-items:center; justify-content:center; gap:4px;
+  position:relative; letter-spacing:.01em;
+  -webkit-tap-highlight-color:transparent;
+}
+.tab-btn:last-child { border-right:none; }
+/* Per-category accent colors */
+.tab-btn[data-tab="natalicios"]   { --tc:#2563eb; --tl:#60a5fa; --tbg:#eff6ff; }
+.tab-btn[data-tab="natalicios-nina"] { --tc:#db2777; --tl:#f472b6; --tbg:#fdf2f8; }
+.tab-btn[data-tab="primer-ano"]   { --tc:#7c3aed; --tl:#a78bfa; --tbg:#f5f3ff; }
+.tab-btn[data-tab="recuerdos"]    { --tc:#d97706; --tl:#fbbf24; --tbg:#fffbeb; }
+.tab-btn[data-tab="llaveros"]     { --tc:#059669; --tl:#34d399; --tbg:#ecfdf5; }
+.tab-btn:hover {
+  background:var(--tbg,#fdf2f8);
+  color:var(--tc,var(--pink-deep));
+  transform:translateY(-2px);
+  box-shadow:0 4px 16px rgba(0,0,0,.12);
+  z-index:2;
+}
+.tab-btn.active {
+  background:var(--tc,var(--pink-deep));
+  background:linear-gradient(135deg, var(--tc,#D63384), var(--tl,#9B59A0));
+  color:#fff;
+  box-shadow:0 4px 18px rgba(0,0,0,.22);
+  z-index:3;
+}
+.tab-btn.active:hover { transform:translateY(-1px); }
+.tab-btn:active { transform:scale(.97); }
+.tab-icon { font-size:20px; line-height:1; }
+.tab-label { font-size:11.5px; font-weight:700; line-height:1.2; text-align:center; }
+.tab-count {
+  display:inline-flex; align-items:center; justify-content:center;
+  min-width:20px; height:20px; padding:0 6px;
+  background:rgba(0,0,0,.1); border-radius:20px;
+  font-size:10px; font-weight:800; line-height:1;
+  transition:background .2s;
+}
+.tab-btn.active .tab-count { background:rgba(255,255,255,.25); color:#fff; }.section { display:none; }.section.active { display:block; }.grid {
  display:grid; grid-template-columns:repeat(4,1fr);
  gap:12px; margin:20px 40px 0;
  }.card {
@@ -88,7 +125,10 @@
  @media(max-width:900px) {.grid { grid-template-columns:repeat(3,1fr); } }
  @media(max-width:600px) {
  header { padding:24px 16px; gap:16px; }.logo-wrap { width:80px; height:80px; }.grid { grid-template-columns:repeat(2,1fr); gap:8px; }
- .nav-tabs { flex-wrap:wrap; }.tab-btn { font-size:11px; padding:10px 4px; flex:1 1 45%; min-width:45%; }
+ .nav-tabs { flex-wrap:wrap; margin:20px 12px 0; border-radius:12px; gap:6px; background:transparent; box-shadow:none; }
+  .tab-btn { flex:1 1 calc(33% - 6px); min-width:calc(33% - 6px); min-height:64px; padding:10px 6px 8px; border-radius:10px; border:2px solid rgba(0,0,0,.08); box-shadow:0 2px 8px rgba(0,0,0,.07); font-size:10.5px; gap:3px; }
+  .tab-icon { font-size:22px; }
+  .tab-count { min-width:18px; height:18px; font-size:9.5px; }
  }
 
     .wa-btn {
@@ -124,6 +164,17 @@
 /* ===== WA BUTTON ===== */
 .wa-cotizar{display:block;margin-top:10px;background:#25d366;color:#fff;font-size:13px;font-weight:700;padding:9px 14px;border-radius:22px;text-decoration:none;text-align:center;transition:background .2s;}
 .wa-cotizar:hover{background:#1da851;}
+.share-btn {
+  display:flex; align-items:center; justify-content:center; gap:6px;
+  margin-top:8px; padding:8px 14px; border-radius:22px;
+  background:transparent; border:2px solid var(--border);
+  color:var(--mid); font-size:12px; font-weight:700; cursor:pointer;
+  text-decoration:none; transition:all .2s; width:100%;
+  -webkit-tap-highlight-color:transparent;
+}
+.share-btn:hover { background:var(--pink-pale); border-color:var(--pink-soft); color:var(--pink-deep); }
+.share-btn.copied { background:var(--pink-deep); border-color:var(--pink-deep); color:#fff; }
+.card-anchor { display:block; position:relative; top:-80px; visibility:hidden; }
 
 /* ===== BUSCADOR ===== */
 .search-wrap{margin:16px 40px 0;position:relative;}
@@ -159,22 +210,30 @@
 
 
 <div class="nav-tabs">
- 
- 
- <button class="tab-btn" onclick="showTab('natalicios',this)">
- <span class="tab-icon">🪵</span> Natalicios 3D Niños
- </button>
-    <button class="tab-btn" onclick="showTab('natalicios-nina',this)">
-      <span class="tab-icon">🌸</span> Natalicios 3D Niñas
-    </button>
-    <button class="tab-btn active" onclick="showTab('primer-ano',this)">
-    <span class="tab-icon">📸</span> Cuadros de Primer Año
+  <button class="tab-btn" data-tab="natalicios" onclick="showTab('natalicios',this)">
+    <span class="tab-icon">🪵</span>
+    <span class="tab-label">Natalicios 3D Niños</span>
+    <span class="tab-count" id="count-natalicios">20</span>
   </button>
-    <button class="tab-btn" onclick="showTab('recuerdos',this)">
-    <span class="tab-icon">🎁</span> Recuerdos
+  <button class="tab-btn" data-tab="natalicios-nina" onclick="showTab('natalicios-nina',this)">
+    <span class="tab-icon">🌸</span>
+    <span class="tab-label">Natalicios 3D Niñas</span>
+    <span class="tab-count" id="count-natalicios-nina">25</span>
   </button>
-    <button class="tab-btn" onclick="showTab('llaveros',this)">
-    <span class="tab-icon">🔑</span> Llaveros
+  <button class="tab-btn active" data-tab="primer-ano" onclick="showTab('primer-ano',this)">
+    <span class="tab-icon">📸</span>
+    <span class="tab-label">Cuadros 1er Año</span>
+    <span class="tab-count" id="count-primer-ano">79</span>
+  </button>
+  <button class="tab-btn" data-tab="recuerdos" onclick="showTab('recuerdos',this)">
+    <span class="tab-icon">🎁</span>
+    <span class="tab-label">Recuerdos</span>
+    <span class="tab-count" id="count-recuerdos">31</span>
+  </button>
+  <button class="tab-btn" data-tab="llaveros" onclick="showTab('llaveros',this)">
+    <span class="tab-icon">🔑</span>
+    <span class="tab-label">Llaveros</span>
+    <span class="tab-count" id="count-llaveros">9</span>
   </button>
 </div>
 
@@ -189,7 +248,7 @@
 
 <div id="tab-primer-ano" class="section active">
   <div class="grid">
-    <div class="card">
+    <div id="primer-ano-cuadro-castillo-rosa-primer-ano" class="card">
       <img class="card-img" src="orig_1.jpg" alt="Cuadro Castillo Rosa — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -199,7 +258,7 @@
         
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-safari-primer-ano" class="card">
       <img class="card-img" src="orig_2.jpg" alt="Cuadro Safari — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -209,7 +268,7 @@
         
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-arco-princesa-primer-ano" class="card">
       <img class="card-img" src="orig_3.jpg" alt="Cuadro Arco Princesa — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -217,9 +276,10 @@
         <p class="card-desc">Tablero estilo arco con 12 marcos y cajas personalizadas con nombre y coronitas doradas.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Cuadro%20Arco%20Princesa%20%E2%80%94%20Primer%20A%C3%B1o" target="_blank">💬 Cotizar por WhatsApp</a>
         
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-castillo-rosa-primer-ano',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-osito-nube-primer-ano" class="card">
       <img class="card-img" src="orig_4.jpg" alt="Cuadro Osito Nube — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -227,9 +287,10 @@
         <p class="card-desc">Tablero gris con osito sobre nube, corazones y estrellas. 12 marcos mensuales y datos de nacimiento.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Cuadro%20Osito%20Nube%20%E2%80%94%20Primer%20A%C3%B1o" target="_blank">💬 Cotizar por WhatsApp</a>
         
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-safari-primer-ano',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-nina-flores-primer-ano" class="card">
       <img class="card-img" src="orig_5.jpg" alt="Cuadro Niña Flores — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -237,9 +298,10 @@
         <p class="card-desc">Tablero blanco y rosa con figura de niña, 12 marcos mensuales y colgantes con datos del bebé.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Cuadro%20Ni%C3%B1a%20Flores%20%E2%80%94%20Primer%20A%C3%B1o" target="_blank">💬 Cotizar por WhatsApp</a>
         
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-arco-princesa-primer-ano',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-azul-estrellas-primer-ano" class="card">
       <img class="card-img" src="orig_6.jpg" alt="Cuadro Azul Estrellas — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -247,9 +309,10 @@
         <p class="card-desc">Tablero blanco con estrellas azules y plateadas. 12 marcos mensuales y datos de nacimiento colgantes.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Cuadro%20Azul%20Estrellas%20%E2%80%94%20Primer%20A%C3%B1o" target="_blank">💬 Cotizar por WhatsApp</a>
         
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-osito-nube-primer-ano',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-osito-marron-primer-ano" class="card">
       <img class="card-img" src="orig_7.jpg" alt="Cuadro Osito Marrón — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -257,9 +320,10 @@
         <p class="card-desc">Tablero en forma de osito con 12 marcos mensuales y foto central. Datos de nacimiento incluidos.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Cuadro%20Osito%20Marr%C3%B3n%20%E2%80%94%20Primer%20A%C3%B1o" target="_blank">💬 Cotizar por WhatsApp</a>
         
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-nina-flores-primer-ano',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-margaritas-primer-ano" class="card">
       <img class="card-img" src="orig_8.jpg" alt="Cuadro Margaritas — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -267,9 +331,10 @@
         <p class="card-desc">Tablero arco con margaritas naranjas y 12 marcos mensuales. Sección de datos de nacimiento.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Cuadro%20Margaritas%20%E2%80%94%20Primer%20A%C3%B1o" target="_blank">💬 Cotizar por WhatsApp</a>
         
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-azul-estrellas-primer-ano',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-flores-tropicales-primer-ano" class="card">
       <img class="card-img" src="orig_9.jpg" alt="Cuadro Flores Tropicales — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -277,9 +342,10 @@
         <p class="card-desc">Tablero arco con flores tropicales y abejas. 12 marcos rosas mensuales con nombre personalizado.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Cuadro%20Flores%20Tropicales%20%E2%80%94%20Primer%20A%C3%B1o" target="_blank">💬 Cotizar por WhatsApp</a>
         
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-osito-marron-primer-ano',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-safari-animales-primer-ano" class="card">
       <img class="card-img" src="orig_10.jpg" alt="Cuadro Safari Animales — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -289,7 +355,7 @@
         
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-conejita-primer-ano" class="card">
       <img class="card-img" src="orig_11.jpg" alt="Cuadro Conejita — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -297,9 +363,10 @@
         <p class="card-desc">Tablero blanco con conejita bebé. 12 marcos mensuales y foto de primer día.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Cuadro%20Conejita%20%E2%80%94%20Primer%20A%C3%B1o" target="_blank">💬 Cotizar por WhatsApp</a>
         
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-margaritas-primer-ano',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-tropical-abejas-primer-ano" class="card">
       <img class="card-img" src="orig_12.jpg" alt="Cuadro Tropical Abejas — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -307,9 +374,10 @@
         <p class="card-desc">Tablero arco tropical con flores y abejas. 12 marcos con bordes rosas personalizados.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Cuadro%20Tropical%20Abejas%20%E2%80%94%20Primer%20A%C3%B1o" target="_blank">💬 Cotizar por WhatsApp</a>
         
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-flores-tropicales-primer-ano',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-superheroes-primer-ano" class="card">
       <img class="card-img" src="orig_13.jpg" alt="Cuadro Superhéroes — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -317,9 +385,10 @@
         <p class="card-desc">Tablero arco oscuro con Capitán América, Iron Man y Spiderman. 12 marcos mensuales.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Cuadro%20Superh%C3%A9roes%20%E2%80%94%20Primer%20A%C3%B1o" target="_blank">💬 Cotizar por WhatsApp</a>
         
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-safari-animales-primer-ano',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-mariposas-primer-ano" class="card">
       <img class="card-img" src="orig_14.jpg" alt="Cuadro Mariposas — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -327,9 +396,10 @@
         <p class="card-desc">Tablero arco con mariposas lilas y marcos dorados. 12 fotos mensuales personalizadas.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Cuadro%20Mariposas%20%E2%80%94%20Primer%20A%C3%B1o" target="_blank">💬 Cotizar por WhatsApp</a>
         
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-conejita-primer-ano',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-osita-blanca-primer-ano" class="card">
       <img class="card-img" src="orig_15.jpg" alt="Cuadro Osita Blanca — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -337,9 +407,10 @@
         <p class="card-desc">Tablero en forma de osa blanca con 12 fotos mensuales y nombre dorado.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Cuadro%20Osita%20Blanca%20%E2%80%94%20Primer%20A%C3%B1o" target="_blank">💬 Cotizar por WhatsApp</a>
         
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-tropical-abejas-primer-ano',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-astronauta-primer-ano" class="card">
       <img class="card-img" src="orig_16.jpg" alt="Cuadro Astronauta — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -347,9 +418,10 @@
         <p class="card-desc">Tablero arco con astronauta en cohete y planeta. 12 marcos dorados mensuales.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Cuadro%20Astronauta%20%E2%80%94%20Primer%20A%C3%B1o" target="_blank">💬 Cotizar por WhatsApp</a>
         
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-superheroes-primer-ano',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-minnie-mouse-primer-ano" class="card">
       <img class="card-img" src="orig_17.jpg" alt="Cuadro Minnie Mouse — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -357,9 +429,10 @@
         <p class="card-desc">Tablero arco con Minnie Mouse, datos de nacimiento y 12 marcos mensuales.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Cuadro%20Minnie%20Mouse%20%E2%80%94%20Primer%20A%C3%B1o" target="_blank">💬 Cotizar por WhatsApp</a>
         
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-mariposas-primer-ano',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-mariposas-dorado-primer-ano" class="card">
       <img class="card-img" src="orig_18.jpg" alt="Cuadro Mariposas Dorado — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -367,9 +440,10 @@
         <p class="card-desc">Tablero arco con mariposas decorativas y marcos dorados. 12 fotos del primer año.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Cuadro%20Mariposas%20Dorado%20%E2%80%94%20Primer%20A%C3%B1o" target="_blank">💬 Cotizar por WhatsApp</a>
         
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-osita-blanca-primer-ano',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-lazo-rosa-primer-ano" class="card">
       <img class="card-img" src="orig_19.jpg" alt="Cuadro Lazo Rosa — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -377,9 +451,10 @@
         <p class="card-desc">Tablero arco blanco con gran lazo rosa. 12 marcos mensuales y foto de recién nacido.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Cuadro%20Lazo%20Rosa%20%E2%80%94%20Primer%20A%C3%B1o" target="_blank">💬 Cotizar por WhatsApp</a>
         
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-astronauta-primer-ano',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="primer-ano-cuadro-osito-y-leon-primer-ano" class="card">
       <img class="card-img" src="orig_20.jpg" alt="Cuadro Osito y León — Primer Año">
       <div class="card-body">
         <span class="card-tag">Cuadro Primer Año</span>
@@ -387,6 +462,10 @@
         <p class="card-desc">Tablero arco gris con osito y león. 12 marcos dorados mensuales con fotos reales.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Cuadro%20Osito%20y%20Le%C3%B3n%20%E2%80%94%20Primer%20A%C3%B1o" target="_blank">💬 Cotizar por WhatsApp</a>
         
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-minnie-mouse-primer-ano',this)">🔗 Copiar enlace del producto</button>
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-mariposas-dorado-primer-ano',this)">🔗 Copiar enlace del producto</button>
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-lazo-rosa-primer-ano',this)">🔗 Copiar enlace del producto</button>
+      <button class="share-btn" onclick="copyLink('primer-ano-cuadro-osito-y-leon-primer-ano',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
   </div>
@@ -431,7 +510,7 @@
   </div>
   <p style="text-align:center;color:#888;font-size:0.8rem;margin:10px 0 0;">✨ Todos los diseños son personalizados con el nombre del bebé</p>
 </div>
- <div class="grid"> <div class="card">
+ <div class="grid"> <div id="natalicios-dinosaurio-benicio-natalicio" class="card">
  <img class="card-img" src="orig_21.jpg" alt="Dinosaurio Benicio — Natalicio">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -440,7 +519,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Dinosaurio%20Benicio%20%E2%80%94%20Natalicio" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-submarino-amarillo-natalicio" class="card">
  <img class="card-img" src="orig_22.jpg" alt="Submarino Amarillo — Natalicio">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -449,7 +528,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Submarino%20Amarillo%20%E2%80%94%20Natalicio" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-nautico-natalicio-grande" class="card">
  <img class="card-img" src="orig_23.jpg" alt="Náutico — Natalicio Grande">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -458,7 +537,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20N%C3%A1utico%20%E2%80%94%20Natalicio%20Grande" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-dinosaurio-tadeo-natalicio" class="card">
  <img class="card-img" src="orig_24.jpg" alt="Dinosaurio Tadeo — Natalicio">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -467,7 +546,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Dinosaurio%20Tadeo%20%E2%80%94%20Natalicio" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-pequeno-principe-natalicio" class="card">
  <img class="card-img" src="orig_25.jpg" alt="Pequeño Príncipe — Natalicio">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -476,7 +555,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Peque%C3%B1o%20Pr%C3%ADncipe%20%E2%80%94%20Natalicio" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-dinosaurio-tyrese-natalicio" class="card">
  <img class="card-img" src="orig_26.jpg" alt="Dinosaurio Tyrese — Natalicio">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -485,7 +564,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Dinosaurio%20Tyrese%20%E2%80%94%20Natalicio" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-dinosaurio-gian-lucca-natalicio" class="card">
  <img class="card-img" src="orig_27.jpg" alt="Dinosaurio Gian Lucca — Natalicio">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -494,7 +573,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Dinosaurio%20Gian%20Lucca%20%E2%80%94%20Natalicio" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-simba-natalicio-con-luces" class="card">
  <img class="card-img" src="orig_28.jpg" alt="Simba — Natalicio con Luces">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -503,7 +582,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Simba%20%E2%80%94%20Natalicio%20con%20Luces" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-safari-fabian-stefano-natalicio" class="card">
  <img class="card-img" src="orig_29.jpg" alt="Safari Fabián Stefano — Natalicio">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -512,7 +591,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Safari%20Fabi%C3%A1n%20Stefano%20%E2%80%94%20Natalicio" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-winnie-pooh-paulo-natalicio" class="card">
  <img class="card-img" src="orig_30.jpg" alt="Winnie Pooh Paulo — Natalicio">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -521,7 +600,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Winnie%20Pooh%20Paulo%20%E2%80%94%20Natalicio" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-cars-lucas-benjamin-natalicio-con-luces" class="card">
  <img class="card-img" src="orig_31.jpg" alt="Cars Lucas Benjamin — Natalicio con Luces">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -530,7 +609,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Cars%20Lucas%20Benjamin%20%E2%80%94%20Natalicio%20con%20Luces" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-spiderman-rafael-natalicio" class="card">
  <img class="card-img" src="orig_32.jpg" alt="Spiderman Rafael — Natalicio">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -539,7 +618,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Spiderman%20Rafael%20%E2%80%94%20Natalicio" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-elefante-ignacio-natalicio-con-luces" class="card">
  <img class="card-img" src="orig_33.jpg" alt="Elefante Ignacio — Natalicio con Luces">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -548,7 +627,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Elefante%20Ignacio%20%E2%80%94%20Natalicio%20con%20Luces" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-safari-jeep-thiago-natalicio" class="card">
  <img class="card-img" src="orig_34.jpg" alt="Safari Jeep Thiago — Natalicio">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -557,7 +636,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Safari%20Jeep%20Thiago%20%E2%80%94%20Natalicio" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-looney-tunes-eydhan-natalicio-con-luces" class="card">
  <img class="card-img" src="orig_35.jpg" alt="Looney Tunes Eydhan — Natalicio con Luces">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -566,7 +645,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Looney%20Tunes%20Eydhan%20%E2%80%94%20Natalicio%20con%20Luces" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-zorrito-dante-natalicio" class="card">
  <img class="card-img" src="orig_36.jpg" alt="Zorrito Dante — Natalicio">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -575,7 +654,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Zorrito%20Dante%20%E2%80%94%20Natalicio" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-pequeno-principe-elias-natalicio" class="card">
  <img class="card-img" src="orig_37.jpg" alt="Pequeño Príncipe Elías — Natalicio">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -584,7 +663,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Peque%C3%B1o%20Pr%C3%ADncipe%20El%C3%ADas%20%E2%80%94%20Natalicio" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-osito-aviador-miguel-natalicio" class="card">
  <img class="card-img" src="orig_38.jpg" alt="Osito Aviador Miguel — Natalicio">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -593,7 +672,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Osito%20Aviador%20Miguel%20%E2%80%94%20Natalicio" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-safari-francesco-natalicio" class="card">
  <img class="card-img" src="orig_39.jpg" alt="Safari Francesco — Natalicio">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -602,7 +681,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Safari%20Francesco%20%E2%80%94%20Natalicio" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-safari-emiliano-natalicio" class="card">
  <img class="card-img" src="orig_40.jpg" alt="Safari Emiliano — Natalicio">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -611,7 +690,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Safari%20Emiliano%20%E2%80%94%20Natalicio" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-santino-natalicio-globo-aerostatico" class="card">
  <img class="card-img" src="orig_41.jpg" alt="Santino — Natalicio Globo Aerostático">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -620,7 +699,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Santino%20%E2%80%94%20Natalicio%20Globo%20Aerost%C3%A1tico" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-santiago-alessio-brothers-forever-natalicio" class="card">
  <img class="card-img" src="orig_42.jpg" alt="Santiago & Alessio Brothers Forever — Natalicio">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -629,7 +708,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Santiago%20%26%20Alessio%20Brothers%20Forever%20%E2%80%94%20Natalicio" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-vasco-mateo-natalicio-musical" class="card">
  <img class="card-img" src="orig_43.jpg" alt="Vasco Mateo — Natalicio Musical">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -638,7 +717,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Vasco%20Mateo%20%E2%80%94%20Natalicio%20Musical" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-inicial-safari-natalicio" class="card">
  <img class="card-img" src="orig_44.jpg" alt="Inicial Safari — Natalicio">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -647,7 +726,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Inicial%20Safari%20%E2%80%94%20Natalicio" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-aidan-natalicio-avion" class="card">
  <img class="card-img" src="orig_45.jpg" alt="Aidan — Natalicio Avión">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -656,7 +735,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Aidan%20%E2%80%94%20Natalicio%20Avi%C3%B3n" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-adrianito-natalicio-elefante" class="card">
  <img class="card-img" src="orig_46.jpg" alt="Adrianito — Natalicio Elefante">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -665,7 +744,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Adrianito%20%E2%80%94%20Natalicio%20Elefante" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-adrian-alessandro-natalicio-osito-aviador" class="card">
  <img class="card-img" src="orig_47.jpg" alt="Adrián Alessandro — Natalicio Osito Aviador">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -674,7 +753,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Adri%C3%A1n%20Alessandro%20%E2%80%94%20Natalicio%20Osito%20Aviador" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-omar-enrique-natalicio-elefante" class="card">
  <img class="card-img" src="orig_48.jpg" alt="Omar Enrique — Natalicio Elefante">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -683,7 +762,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Omar%20Enrique%20%E2%80%94%20Natalicio%20Elefante" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-ethan-gael-natalicio-osito-y-globo" class="card">
  <img class="card-img" src="orig_49.jpg" alt="Ethan Gael — Natalicio Osito y Globo">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -692,7 +771,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Ethan%20Gael%20%E2%80%94%20Natalicio%20Osito%20y%20Globo" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-hector-alexander-natalicio-harry-potter" class="card">
  <img class="card-img" src="orig_50.jpg" alt="Héctor Alexander — Natalicio Harry Potter">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -701,7 +780,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20H%C3%A9ctor%20Alexander%20%E2%80%94%20Natalicio%20Harry%20Potter" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-esteban-nicolas-natalicio-safari" class="card">
  <img class="card-img" src="orig_51.jpg" alt="Esteban Nicolás — Natalicio Safari">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -710,7 +789,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Esteban%20Nicol%C3%A1s%20%E2%80%94%20Natalicio%20Safari" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-welcome-baby-liam-natalicio-leon" class="card">
  <img class="card-img" src="orig_52.jpg" alt="Welcome Baby Liam — Natalicio León">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -719,7 +798,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Welcome%20Baby%20Liam%20%E2%80%94%20Natalicio%20Le%C3%B3n" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-iosef-emir-natalicio-osito-arcoiris" class="card">
  <img class="card-img" src="orig_53.jpg" alt="Iosef Emir — Natalicio Osito Arcoíris">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -728,7 +807,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Iosef%20Emir%20%E2%80%94%20Natalicio%20Osito%20Arco%C3%ADris" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-alfonso-santiago-natalicio-globos" class="card">
  <img class="card-img" src="orig_54.jpg" alt="Alfonso Santiago — Natalicio Globos">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -737,7 +816,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Alfonso%20Santiago%20%E2%80%94%20Natalicio%20Globos" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-kev-fernando-natalicio-marinero" class="card">
  <img class="card-img" src="orig_55.jpg" alt="Kev Fernando — Natalicio Marinero">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -746,7 +825,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Kev%20Fernando%20%E2%80%94%20Natalicio%20Marinero" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-anthony-natalicio-superheroes" class="card">
  <img class="card-img" src="orig_56.jpg" alt="Anthony — Natalicio Superhéroes">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -755,7 +834,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Anthony%20%E2%80%94%20Natalicio%20Superh%C3%A9roes" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-thiago-natalicio-osito-y-globo" class="card">
  <img class="card-img" src="orig_57.jpg" alt="Thiago — Natalicio Osito y Globo">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -764,7 +843,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Thiago%20%E2%80%94%20Natalicio%20Osito%20y%20Globo" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-enzo-roberto-natalicio-safari-jeep" class="card">
  <img class="card-img" src="orig_58.jpg" alt="Enzo Roberto — Natalicio Safari Jeep">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -773,7 +852,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Enzo%20Roberto%20%E2%80%94%20Natalicio%20Safari%20Jeep" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
- <div class="card">
+ <div id="natalicios-valentino-natalicio-perritos" class="card">
  <img class="card-img" src="orig_59.jpg" alt="Valentino — Natalicio Perritos">
  <div class="card-body">
  <span class="card-tag">Natalicio 3D</span>
@@ -782,184 +861,207 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Valentino%20%E2%80%94%20Natalicio%20Perritos" target="_blank">💬 Cotizar por WhatsApp</a>
  </div>
  </div>
-    <div class="card">
+    <div id="natalicios-arturo-iturbe-aldavero-natalicio-batman" class="card">
       <img class="card-img" src="orig_60.jpg" alt="Arturo Iturbe Aldavero — Natalicio Batman">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Arturo Iturbe Aldavero — Natalicio Batman</h3>
         <p class="card-desc">Placa circular gris con Batman baby, silueta de ciudad, luna y estrellas. Con 4 colgantes.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Arturo%20Iturbe%20Aldavero%20%E2%80%94%20Natalicio%20Batman" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-thiago-natalicio-osito-y-globo',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-liann-natalicio-safari" class="card">
       <img class="card-img" src="orig_61.jpg" alt="Liann — Natalicio Safari">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Liann — Natalicio Safari</h3>
         <p class="card-desc">Placa circular con elefante, jirafa y león apilados. Hojas tropicales y estrellas doradas. Con colgantes en forma de estrella.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Liann%20%E2%80%94%20Natalicio%20Safari" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-enzo-roberto-natalicio-safari-jeep',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-milan-natalicio-simba" class="card">
       <img class="card-img" src="orig_62.jpg" alt="Milan — Natalicio Simba">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Milan — Natalicio Simba</h3>
         <p class="card-desc">Placa circular con Simba bebé, hojas verdes y nubes. Con 3 colgantes.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Milan%20%E2%80%94%20Natalicio%20Simba" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-valentino-natalicio-perritos',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-thiago-boho-natalicio-safari" class="card">
       <img class="card-img" src="orig_63.jpg" alt="Thiago Boho — Natalicio Safari">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Thiago Boho — Natalicio Safari</h3>
         <p class="card-desc">Placa circular con elefante, cebra, oso y jirafa estilo boho en tonos gris y marrón.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Thiago%20Boho%20%E2%80%94%20Natalicio%20Safari" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-arturo-iturbe-aldavero-natalicio-batman',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-leo-natalicio-safari" class="card">
       <img class="card-img" src="orig_64.jpg" alt="Leo — Natalicio Safari">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Leo — Natalicio Safari</h3>
         <p class="card-desc">Placa circular blanca con elefante, león, jirafa, hipopótamo y mono. Hojas monstera verdes y estrellas doradas. Con 3 colgantes.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Leo%20%E2%80%94%20Natalicio%20Safari" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-liann-natalicio-safari',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-ares-natalicio-rey-leon" class="card">
       <img class="card-img" src="orig_65.jpg" alt="Ares — Natalicio Rey León">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Ares — Natalicio Rey León</h3>
         <p class="card-desc">Placa circular con familia del Rey León (Simba, Nala y bebé). Hojas tropicales y estrellas doradas.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Ares%20%E2%80%94%20Natalicio%20Rey%20Le%C3%B3n" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-milan-natalicio-simba',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-noah-jesus-natalicio-safari" class="card">
       <img class="card-img" src="orig_66.jpg" alt="Noah Jesús — Natalicio Safari">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Noah Jesús — Natalicio Safari</h3>
         <p class="card-desc">Placa circular con jirafa y león bebé. Corona de hojas monstera verdes y estrellas amarillas. Con 3 colgantes.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Noah%20Jes%C3%BAs%20%E2%80%94%20Natalicio%20Safari" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-thiago-boho-natalicio-safari',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-felipe-mateo-natalicio-astronauta" class="card">
       <img class="card-img" src="orig_67.jpg" alt="Felipe Mateo — Natalicio Astronauta">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Felipe Mateo — Natalicio Astronauta</h3>
         <p class="card-desc">Placa circular azul oscuro con astronauta en cohete, planetas, estrellas de colores. Con 3 colgantes.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Felipe%20Mateo%20%E2%80%94%20Natalicio%20Astronauta" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-leo-natalicio-safari',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-samuel-natalicio-simba" class="card">
       <img class="card-img" src="orig_68.jpg" alt="Samuel — Natalicio Simba">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Samuel — Natalicio Simba</h3>
         <p class="card-desc">Placa circular con Simba bebé y letras doradas espejadas. Fondo bicolor con hojas y nubes.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Samuel%20%E2%80%94%20Natalicio%20Simba" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-ares-natalicio-rey-leon',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-liam-natalicio-safari-con-luces" class="card">
       <img class="card-img" src="orig_69.jpg" alt="Liam — Natalicio Safari con Luces">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Liam — Natalicio Safari con Luces</h3>
         <p class="card-desc">Placa circular con luces LED, elefante, jirafa y león. Hojas monstera y estrellas doradas.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Liam%20%E2%80%94%20Natalicio%20Safari%20con%20Luces" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-noah-jesus-natalicio-safari',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-mateo-natalicio-winnie-pooh-y-tigger" class="card">
       <img class="card-img" src="orig_70.jpg" alt="Mateo — Natalicio Winnie Pooh y Tigger">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Mateo — Natalicio Winnie Pooh y Tigger</h3>
         <p class="card-desc">Placa circular blanca con Winnie Pooh y Tigger bebés. Panales y abejas decorativas. Con 4 colgantes en forma de tarro de miel.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Mateo%20%E2%80%94%20Natalicio%20Winnie%20Pooh%20y%20Tigger" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-felipe-mateo-natalicio-astronauta',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-travis-jr-natalicio-winnie-pooh" class="card">
       <img class="card-img" src="orig_71.jpg" alt="Travis Jr — Natalicio Winnie Pooh">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Travis Jr — Natalicio Winnie Pooh</h3>
         <p class="card-desc">Placa circular con Winnie Pooh, panales de miel y abejas en tonos dorados y marrones.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Travis%20Jr%20%E2%80%94%20Natalicio%20Winnie%20Pooh" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-samuel-natalicio-simba',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-jeremias-natalicio-winnie-pooh" class="card">
       <img class="card-img" src="orig_72.jpg" alt="Jeremías — Natalicio Winnie Pooh">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Jeremías — Natalicio Winnie Pooh</h3>
         <p class="card-desc">Placa circular blanca con Winnie Pooh y abejas decorativas.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Jerem%C3%ADas%20%E2%80%94%20Natalicio%20Winnie%20Pooh" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-liam-natalicio-safari-con-luces',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-nicolas-enrique-natalicio-osito-luna" class="card">
       <img class="card-img" src="orig_73.jpg" alt="Nicolás Enrique — Natalicio Osito Luna">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Nicolás Enrique — Natalicio Osito Luna</h3>
         <p class="card-desc">Placa circular blanca con osito sobre nube y luna. Estrellas de colores y nubes. Con 4 colgantes.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Nicol%C3%A1s%20Enrique%20%E2%80%94%20Natalicio%20Osito%20Luna" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-mateo-natalicio-winnie-pooh-y-tigger',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-julian-natalicio-osito" class="card">
       <img class="card-img" src="orig_74.jpg" alt="Julián — Natalicio Osito">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Julián — Natalicio Osito</h3>
         <p class="card-desc">Placa circular blanca con osito marrón, ramas verdes y luces LED. Con 3 colgantes.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Juli%C3%A1n%20%E2%80%94%20Natalicio%20Osito" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-travis-jr-natalicio-winnie-pooh',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-mateo-natalicio-winnie-pooh-con-luces" class="card">
       <img class="card-img" src="orig_75.jpg" alt="Mateo — Natalicio Winnie Pooh con Luces">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Mateo — Natalicio Winnie Pooh con Luces</h3>
         <p class="card-desc">Placa circular con Tigger, Winnie, Igor y Piglet. Estrellas y luces LED integradas.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Mateo%20%E2%80%94%20Natalicio%20Winnie%20Pooh%20con%20Luces" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-jeremias-natalicio-winnie-pooh',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-juan-pablo-natalicio-safari-con-luces" class="card">
       <img class="card-img" src="orig_76.jpg" alt="Juan Pablo — Natalicio Safari con Luces">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Juan Pablo — Natalicio Safari con Luces</h3>
         <p class="card-desc">Placa circular salmón con elefante, jirafa y león. Hojas tropicales, estrellas y luces LED. Con 3 colgantes en estrella.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Juan%20Pablo%20%E2%80%94%20Natalicio%20Safari%20con%20Luces" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-nicolas-enrique-natalicio-osito-luna',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-berkan-ava-natalicio-globos-y-animales" class="card">
       <img class="card-img" src="orig_77.jpg" alt="Berkan Ava — Natalicio Globos y Animales">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Berkan Ava — Natalicio Globos y Animales</h3>
         <p class="card-desc">Letrero con dos globos aerostáticos iluminados, animales colgantes y nombre en script.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Berkan%20Ava%20%E2%80%94%20Natalicio%20Globos%20y%20Animales" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-julian-natalicio-osito',this)">🔗 Copiar enlace del producto</button>
+      <button class="share-btn" onclick="copyLink('natalicios-mateo-natalicio-winnie-pooh-con-luces',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-diego-y-emilio-natalicio-monster-trucks" class="card">
       <img class="card-img" src="orig_78.jpg" alt="Diego y Emilio — Natalicio Monster Trucks">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Diego y Emilio — Natalicio Monster Trucks</h3>
         <p class="card-desc">Placa circular azul oscuro con dos monster trucks en llamas y nombre en banner.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Diego%20y%20Emilio%20%E2%80%94%20Natalicio%20Monster%20Trucks" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-juan-pablo-natalicio-safari-con-luces',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="natalicios-thiago-natalicio-osito-y-globo-aerostatico" class="card">
       <img class="card-img" src="orig_79.jpg" alt="Thiago — Natalicio Osito y Globo Aerostático">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
         <h3 class="card-name">Thiago — Natalicio Osito y Globo Aerostático</h3>
         <p class="card-desc">Placa circular con osito en avión, globo aerostático azul y nubes blancas.</p>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Thiago%20%E2%80%94%20Natalicio%20Osito%20y%20Globo%20Aerost%C3%A1tico" target="_blank">💬 Cotizar por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('natalicios-berkan-ava-natalicio-globos-y-animales',this)">🔗 Copiar enlace del producto</button>
+      <button class="share-btn" onclick="copyLink('natalicios-diego-y-emilio-natalicio-monster-trucks',this)">🔗 Copiar enlace del producto</button>
+      <button class="share-btn" onclick="copyLink('natalicios-thiago-natalicio-osito-y-globo-aerostatico',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
 </div>
@@ -967,7 +1069,7 @@
 
 <div id="tab-recuerdos" class="section">
   <div class="grid">
-    <div class="card">
+    <div id="recuerdos-mickey-safari" class="card">
       <img class="card-img" src="1000494743.jpg" alt="Mickey Safari" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo Foto</span>
@@ -991,9 +1093,10 @@
           <p class="precio-dinamico" id="precio_card_0">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_0" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Mickey%20Safari%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-mickey-safari',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-plim-plim-nino" class="card">
       <img class="card-img" src="1000494771.jpg" alt="Plim Plim Niño" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
@@ -1017,9 +1120,10 @@
           <p class="precio-dinamico" id="precio_card_1801">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_1801" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Plim%20Plim%20Ni%C3%B1o%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-plim-plim-nino',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-abejita-lilas" class="card">
       <img class="card-img" src="1000494772.jpg" alt="Abejita Lilas" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
@@ -1043,9 +1147,10 @@
           <p class="precio-dinamico" id="precio_card_3577">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_3577" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Abejita%20Lilas%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-abejita-lilas',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-plim-plim" class="card">
       <img class="card-img" src="1000494783.jpg" alt="Plim Plim" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo Foto</span>
@@ -1069,9 +1174,10 @@
           <p class="precio-dinamico" id="precio_card_5332">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_5332" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Plim%20Plim%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-plim-plim',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-plim-plim-azul" class="card">
       <img class="card-img" src="1000494776.jpg" alt="Plim Plim Azul" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo Foto</span>
@@ -1095,9 +1201,10 @@
           <p class="precio-dinamico" id="precio_card_7090">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_7090" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Plim%20Plim%20Azul%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-plim-plim-azul',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-goku-primer-cumpleanos" class="card">
       <img class="card-img" src="1000494756.jpg" alt="Goku — Primer Cumpleaños" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
@@ -1121,9 +1228,10 @@
           <p class="precio-dinamico" id="precio_card_8851">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_8851" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Goku%20%E2%80%94%20Primer%20Cumplea%C3%B1os%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-goku-primer-cumpleanos',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-abejita-azul" class="card">
       <img class="card-img" src="1000494755.jpg" alt="Abejita Azul" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
@@ -1147,9 +1255,10 @@
           <p class="precio-dinamico" id="precio_card_10673">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_10673" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Abejita%20Azul%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-abejita-azul',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-conejita-rosa" class="card">
       <img class="card-img" src="1000494753.jpg" alt="Conejita Rosa" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
@@ -1173,9 +1282,10 @@
           <p class="precio-dinamico" id="precio_card_12422">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_12422" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Conejita%20Rosa%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-conejita-rosa',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-jirafita" class="card">
       <img class="card-img" src="1000494746.jpg" alt="Jirafita" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo Foto</span>
@@ -1199,9 +1309,10 @@
           <p class="precio-dinamico" id="precio_card_14166">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_14166" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Jirafita%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-jirafita',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-leoncito" class="card">
       <img class="card-img" src="1000494747.jpg" alt="Leoncito" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo Foto</span>
@@ -1225,9 +1336,10 @@
           <p class="precio-dinamico" id="precio_card_15905">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_15905" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Leoncito%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-leoncito',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-abejita-celeste" class="card">
       <img class="card-img" src="1000494754.jpg" alt="Abejita Celeste" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
@@ -1250,9 +1362,10 @@
           <p class="precio-dinamico" id="precio_card_17643">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_17643" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Abejita%20Celeste%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-abejita-celeste',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-safari-animales" class="card">
       <img class="card-img" src="1000494748.jpg" alt="Safari Animales" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo Foto</span>
@@ -1275,9 +1388,10 @@
           <p class="precio-dinamico" id="precio_card_19400">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_19400" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Safari%20Animales%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-safari-animales',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-formula-1" class="card">
       <img class="card-img" src="1000494767.jpg" alt="Fórmula 1" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
@@ -1300,9 +1414,10 @@
           <p class="precio-dinamico" id="precio_card_21143">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_21143" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20F%C3%B3rmula%201%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-formula-1',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-margaritas-rosa" class="card">
       <img class="card-img" src="1000494766.jpg" alt="Margaritas Rosa" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo Foto</span>
@@ -1325,9 +1440,10 @@
           <p class="precio-dinamico" id="precio_card_22891">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_22891" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Margaritas%20Rosa%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-margaritas-rosa',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-margaritas" class="card">
       <img class="card-img" src="1000494768.jpg" alt="Margaritas" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
@@ -1350,9 +1466,10 @@
           <p class="precio-dinamico" id="precio_card_24647">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_24647" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Margaritas%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-margaritas',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-princesas-disney" class="card">
       <img class="card-img" src="1000494759.jpg" alt="Princesas Disney" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
@@ -1375,9 +1492,10 @@
           <p class="precio-dinamico" id="precio_card_26381">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_26381" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Princesas%20Disney%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-princesas-disney',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-plim-plim-nina" class="card">
       <img class="card-img" src="1000494763.jpg" alt="Plim Plim Niña" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
@@ -1400,9 +1518,10 @@
           <p class="precio-dinamico" id="precio_card_28168">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_28168" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Plim%20Plim%20Ni%C3%B1a%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-plim-plim-nina',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-abejita-pastel" class="card">
       <img class="card-img" src="1000494764.jpg" alt="Abejita Pastel" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Natalicio 3D</span>
@@ -1425,9 +1544,10 @@
           <p class="precio-dinamico" id="precio_card_29940">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_29940" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Abejita%20Pastel%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-abejita-pastel',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-mickey-variante" class="card">
       <img class="card-img" src="1000494782.jpg" alt="Mickey (variante)" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo Foto</span>
@@ -1450,9 +1570,10 @@
           <p class="precio-dinamico" id="precio_card_31708">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_31708" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Mickey%20(variante)%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-mickey-variante',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-safari-animales-2" class="card">
       <img class="card-img" src="1000494749.jpg" alt="Safari Animales" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo 3D</span>
@@ -1475,9 +1596,10 @@
           <p class="precio-dinamico" id="precio_card_33495">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_33495" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Safari%20Animales%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-safari-animales-2',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-dinosaurios" class="card">
       <img class="card-img" src="1000494779.jpg" alt="Dinosaurios" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo 3D</span>
@@ -1500,9 +1622,10 @@
           <p class="precio-dinamico" id="precio_card_35258">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_35258" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Dinosaurios%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-dinosaurios',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-princesas-disney-2" class="card">
       <img class="card-img" src="1000494765.jpg" alt="Princesas Disney" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo 3D</span>
@@ -1525,9 +1648,10 @@
           <p class="precio-dinamico" id="precio_card_37015">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_37015" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Princesas%20Disney%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-princesas-disney-2',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-zorro-dormido" class="card">
       <img class="card-img" src="1000494778.jpg" alt="Zorro Dormido" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo 3D</span>
@@ -1550,9 +1674,10 @@
           <p class="precio-dinamico" id="precio_card_38779">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_38779" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Zorro%20Dormido%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-zorro-dormido',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-winnie-pooh" class="card">
       <img class="card-img" src="1000494777.jpg" alt="Winnie Pooh" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo 3D</span>
@@ -1575,9 +1700,10 @@
           <p class="precio-dinamico" id="precio_card_40538">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_40538" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Winnie%20Pooh%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-winnie-pooh',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-safari-3d" class="card">
       <img class="card-img" src="1000494770.jpg" alt="Safari 3D" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo 3D</span>
@@ -1600,9 +1726,10 @@
           <p class="precio-dinamico" id="precio_card_42285">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_42285" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Safari%203D%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-safari-3d',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-monito-tropical" class="card">
       <img class="card-img" src="1000494769.jpg" alt="Monito Tropical" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo 3D</span>
@@ -1625,9 +1752,10 @@
           <p class="precio-dinamico" id="precio_card_44041">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_44041" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Monito%20Tropical%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-monito-tropical',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-dinosaurios-color" class="card">
       <img class="card-img" src="1000494793.jpg" alt="Dinosaurios Color" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo 3D</span>
@@ -1650,9 +1778,10 @@
           <p class="precio-dinamico" id="precio_card_45814">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_45814" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Dinosaurios%20Color%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-dinosaurios-color',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-paw-patrol-rocky" class="card">
       <img class="card-img" src="1000494774.jpg" alt="Paw Patrol Rocky" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo 3D</span>
@@ -1675,9 +1804,10 @@
           <p class="precio-dinamico" id="precio_card_47556">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_47556" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Paw%20Patrol%20Rocky%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-paw-patrol-rocky',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-baby-mickey" class="card">
       <img class="card-img" src="1000494775.jpg" alt="Baby Mickey" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo 3D</span>
@@ -1700,9 +1830,10 @@
           <p class="precio-dinamico" id="precio_card_49327">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_49327" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Baby%20Mickey%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-baby-mickey',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-mariposas" class="card">
       <img class="card-img" src="1000494792.jpg" alt="Mariposas" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Recuerdo 3D</span>
@@ -1725,9 +1856,10 @@
           <p class="precio-dinamico" id="precio_card_51084">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_51084" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Mariposas%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-mariposas',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="recuerdos-princesas-disney-3" class="card">
       <img class="card-img" src="nina_26.jpg" alt="Princesas Disney" loading="lazy" style="transform:rotate(90deg);object-fit:cover;">
       <div class="card-body">
         <span class="card-tag">Recuerdo Foto</span>
@@ -1751,13 +1883,14 @@
           <p class="precio-dinamico" id="precio_card_51085">Total: S/ 350</p>
         </div>
         <a class="wa-cotizar" id="wa_card_51085" href="https://wa.me/51900007660?text=Hola%2C%20quiero%20cotizar%3A%20Princesas%20Disney%20%E2%80%94%20Cantidad%3A%20Ciento%20%E2%80%94%20Precio%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('recuerdos-princesas-disney-3',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
   </div>
 </div>
 <section id="tab-natalicios-nina" class="section"><div class="grid"></div></section><div id="tab-llaveros" class="section">
   <div class="grid">
-    <div class="card">
+    <div id="llaveros-safari-animales" class="card">
       <img class="card-img" src="1000494751.jpg" alt="Safari Animales" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Llavero Madera</span>
@@ -1772,7 +1905,7 @@
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Safari%20Animales%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
       </div>
     </div>
-    <div class="card">
+    <div id="llaveros-owen-gohan-dragon-ball" class="card">
       <img class="card-img" src="1000494752.jpg" alt="Owen — Gohan Dragon Ball" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Llavero Madera</span>
@@ -1785,9 +1918,10 @@
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Owen%20%E2%80%94%20Gohan%20Dragon%20Ball%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('llaveros-safari-animales',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="llaveros-maximo-safari-mix" class="card">
       <img class="card-img" src="1000494750.jpg" alt="Máximo — Safari Mix" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Llavero Madera</span>
@@ -1800,9 +1934,10 @@
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20M%C3%A1ximo%20%E2%80%94%20Safari%20Mix%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('llaveros-owen-gohan-dragon-ball',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="llaveros-luana-abejita-flor-y-numero-1" class="card">
       <img class="card-img" src="1000494762.jpg" alt="Luana / Abejita — Flor y Número 1" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Llavero Acrílico</span>
@@ -1815,9 +1950,10 @@
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Luana%20%2F%20Abejita%20%E2%80%94%20Flor%20y%20N%C3%BAmero%201%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('llaveros-maximo-safari-mix',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="llaveros-tiziano-mcqueen-cars" class="card">
       <img class="card-img" src="1000494760.jpg" alt="Tiziano — McQueen Cars" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Llavero Madera</span>
@@ -1830,9 +1966,10 @@
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Tiziano%20%E2%80%94%20McQueen%20Cars%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('llaveros-luana-abejita-flor-y-numero-1',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="llaveros-hannah-abejita" class="card">
       <img class="card-img" src="1000494757.jpg" alt="Hannah — Abejita" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Llavero Acrílico</span>
@@ -1845,9 +1982,10 @@
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Hannah%20%E2%80%94%20Abejita%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('llaveros-tiziano-mcqueen-cars',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="llaveros-annie-bambi-con-flores" class="card">
       <img class="card-img" src="1000494780.jpg" alt="Annie — Bambi con Flores" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Llavero Madera</span>
@@ -1860,9 +1998,10 @@
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Annie%20%E2%80%94%20Bambi%20con%20Flores%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('llaveros-hannah-abejita',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="llaveros-francesca-abejita-numero-1" class="card">
       <img class="card-img" src="1000494761.jpg" alt="Francesca — Abejita Número 1" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Llavero Acrílico</span>
@@ -1875,9 +2014,10 @@
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Francesca%20%E2%80%94%20Abejita%20N%C3%BAmero%201%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('llaveros-annie-bambi-con-flores',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
-    <div class="card">
+    <div id="llaveros-mateo-plim-plim" class="card">
       <img class="card-img" src="1000494773.jpg" alt="Mateo — Plim Plim" loading="lazy">
       <div class="card-body">
         <span class="card-tag">Llavero Madera</span>
@@ -1890,6 +2030,8 @@
           <div class="cp-item cp-item--hl"><span class="cp-qty">Ciento</span><span class="cp-val">S/ 350</span></div>
         </div>
         <a class="wa-cotizar" href="https://wa.me/51900007660?text=Hola%2C%20me%20interesa%20cotizar%3A%20Mateo%20%E2%80%94%20Plim%20Plim%20-%20Precio%20por%20Ciento%3A%20S%2F%20350" target="_blank">💬 Cotizar este producto por WhatsApp</a>
+      <button class="share-btn" onclick="copyLink('llaveros-francesca-abejita-numero-1',this)">🔗 Copiar enlace del producto</button>
+      <button class="share-btn" onclick="copyLink('llaveros-mateo-plim-plim',this)">🔗 Copiar enlace del producto</button>
       </div>
     </div>
   </div>
@@ -1922,932 +2064,135 @@
 </footer>
 
 <script>
- function showTab(tab,btn){
- document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
- document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
- document.getElementById('tab-'+tab).classList.add('active');
- btn.classList.add('active');
- }
-</script>
-<script src="nina.js"></script><script>var cs=document.querySelectorAll('.carousel-slide'),ci=0;setInterval(function(){cs[ci].classList.remove('active');ci=(ci+1)%cs.length;cs[ci].classList.add('active');},2000);</script></body>
-</htmlml>
-<html lang="es">
-<head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Láser y Manualidades Miriam — Catálogo</title>
-<link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital,wght@0,400;0,600;1,400&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
-<style>
- *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
- :root {
- --pink-deep:#D63384; --pink-mid:#E8679A; --pink-soft:#F2A8C4;
- --pink-pale:#FDE8F1; --pink-cream:#FDF5F9;
- --lilac:#9B59A0; --lilac-soft:#EDE0F5;
- --white:#FFFFFF; --charcoal:#2A1A2E; --mid:#5A3A55;
- --light:#C9A8BC; --border:#F0D6E8;
- }
- body { font-family:'Inter',sans-serif; background:var(--pink-cream); color:var(--charcoal); }
+function showTab(tab,btn){
+  document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
+  document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
+  const s=document.getElementById('tab-'+tab);
+  if(s) s.classList.add('active');
+  if(btn) btn.classList.add('active');
+  // Update URL hash without scrolling
+  history.replaceState(null,'','#tab-'+tab);
+}
 
- header {
- background:linear-gradient(135deg,#2A1A2E 0%,#4A1A3E 60%,#6B1A50 100%);
- color:#fff; padding:32px 40px 36px;
- position:relative; overflow:hidden;
- display:flex; align-items:center; gap:28px; flex-wrap:wrap;
- }
- header::before {
- content:''; position:absolute; top:-60px; right:-60px;
- width:280px; height:280px;
- background:radial-gradient(circle,rgba(214,51,132,0.3) 0%,transparent 70%);
- border-radius:50%;
- }.logo-wrap {
- position:relative; z-index:1; width:110px; height:110px;
- border-radius:50%; overflow:hidden; border:3px solid var(--pink-soft);
- flex-shrink:0; box-shadow:0 4px 20px rgba(214,51,132,0.4);
- }.logo-wrap img { width:100%; height:100%; object-fit:cover; }.header-text { position:relative; z-index:1; }.eyebrow { font-size:10px; font-weight:600; letter-spacing:.2em; text-transform:uppercase; color:var(--pink-soft); margin-bottom:8px; }.brand { font-family:'Playfair Display',serif; font-size:clamp(22px,4vw,38px); font-weight:600; line-height:1.2; margin-bottom:6px; }.brand em { font-style:italic; color:var(--pink-soft); }.tagline { font-size:13px; font-weight:400; color:rgba(255,255,255,0.7); }.nav-tabs {
- display:flex; margin:28px 40px 0;
- border-radius:10px; overflow:hidden;
- border:2px solid var(--border);
- box-shadow:0 2px 12px rgba(214,51,132,.08);
- }.tab-btn {
- flex:1; padding:14px 8px;
- font-size:13px; font-weight:600;
- background:var(--white); color:var(--mid);
- border:none; cursor:pointer;
- border-right:2px solid var(--border);
- transition:background.2s,color.2s;
- display:flex; align-items:center; justify-content:center; gap:6px;
- }.tab-btn:last-child { border-right:none; }.tab-btn:hover { background:var(--pink-pale); color:var(--pink-deep); }.tab-btn.active { background:linear-gradient(135deg,var(--pink-deep),var(--lilac)); color:#fff; }.tab-icon { font-size:16px; }.section { display:none; }.section.active { display:block; }.grid {
- display:grid; grid-template-columns:repeat(4,1fr);
- gap:12px; margin:20px 40px 0;
- }.card {
- background:var(--white); border:2px solid var(--border);
- border-radius:12px; overflow:hidden;
- transition:box-shadow.25s,transform.25s;
- }.card:hover { box-shadow:0 6px 24px rgba(214,51,132,.15); transform:translateY(-2px); }.card-img { width:100%; aspect-ratio:1/1; object-fit:cover; display:block; }.card-body { padding:10px 12px 12px; }.card-tag {
- display:inline-block; font-size:10px; font-weight:700;
- letter-spacing:.08em; text-transform:uppercase;
- color:var(--pink-deep); background:var(--pink-pale);
- padding:3px 8px; border-radius:20px; margin-bottom:6px;
- }.card-name { font-family:'Playfair Display',serif; font-size:14px; font-weight:600; margin-bottom:3px; line-height:1.3; }.card-desc { font-size:12px; color:var(--mid); font-weight:500; line-height:1.5; }.coming-soon {
- margin:16px 40px 0; padding:16px 24px;
- background:var(--lilac-soft); border:2px dashed var(--lilac);
- border-radius:10px; text-align:center;
- }.coming-soon p { font-size:14px; color:var(--lilac); font-weight:600; }.contact {
- margin:36px 40px 0;
- background:linear-gradient(135deg,var(--pink-pale),var(--lilac-soft));
- border:2px solid var(--border); border-radius:12px; padding:28px 32px;
- display:flex; align-items:center; justify-content:space-between;
- flex-wrap:wrap; gap:16px;
- }.contact h3 { font-family:'Playfair Display',serif; font-size:20px; font-weight:600; margin-bottom:5px; }.contact p { font-size:14px; color:var(--mid); font-weight:500; }.contact-btn {
- background:linear-gradient(135deg,var(--pink-deep),var(--lilac));
- color:#fff; padding:13px 26px; border-radius:24px;
- font-size:14px; font-weight:700; letter-spacing:.04em;
- white-space:nowrap; text-decoration:none;
- box-shadow:0 4px 14px rgba(214,51,132,.3);
- }
+function copyLink(slug,btn){
+  const url = window.location.origin + window.location.pathname + '#' + slug;
+  navigator.clipboard.writeText(url).then(()=>{
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✅ ¡Enlace copiado!';
+    btn.classList.add('copied');
+    setTimeout(()=>{ btn.innerHTML = orig; btn.classList.remove('copied'); }, 2200);
+  }).catch(()=>{
+    // Fallback for older browsers
+    const ta = document.createElement('textarea');
+    ta.value = url;
+    ta.style.position='fixed'; ta.style.opacity='0';
+    document.body.appendChild(ta);
+    ta.select();
+    document.execCommand('copy');
+    document.body.removeChild(ta);
+    const orig = btn.innerHTML;
+    btn.innerHTML = '✅ ¡Enlace copiado!';
+    btn.classList.add('copied');
+    setTimeout(()=>{ btn.innerHTML = orig; btn.classList.remove('copied'); }, 2200);
+  });
+}
 
- footer {
- text-align:center; padding:28px 40px;
- border-top:2px solid var(--border);
- font-size:13px; color:var(--light); font-weight:500;
- margin-top:36px;
- }
- footer strong { color:var(--pink-mid); }
+function updateCounts(){
+  const secs = {
+    'natalicios': 'count-natalicios',
+    'primer-ano': 'count-primer-ano',
+    'recuerdos': 'count-recuerdos',
+    'llaveros': 'count-llaveros',
+    'natalicios-nina': 'count-natalicios-nina'
+  };
+  for(const [id, countId] of Object.entries(secs)){
+    const sec = document.getElementById('tab-'+id);
+    if(!sec) continue;
+    const n = sec.querySelectorAll('.card').length;
+    const el = document.getElementById(countId);
+    if(el && n>0) el.textContent = n;
+  }
+}
 
- @media(max-width:900px) {.grid { grid-template-columns:repeat(3,1fr); } }
- @media(max-width:600px) {
- header { padding:24px 16px; gap:16px; }.logo-wrap { width:80px; height:80px; }.tab-btn { font-size:11px; padding:10px 4px; }.grid { grid-template-columns:repeat(2,1fr); gap:8px; }
- }
-
-    .wa-btn {
-      display: inline-block;
-      margin-top: 8px;
-      background: #25d366;
-      color: #fff;
-      font-size: 0.82rem;
-      font-weight: bold;
-      padding: 7px 14px;
-      border-radius: 20px;
-      text-decoration: none;
-      transition: background 0.2s;
+// Deep-link: navigate to product or tab from URL hash
+function handleHash(){
+  const h = window.location.hash.replace('#','');
+  if(!h) return;
+  if(h.startsWith('tab-')){
+    const tabId = h.replace('tab-','');
+    const btn = document.querySelector('[data-tab="'+tabId+'"]');
+    if(btn) showTab(tabId, btn);
+  } else {
+    // It's a product slug - find it in any section
+    const el = document.getElementById(h);
+    if(!el) return;
+    // Activate the tab that contains this product
+    const section = el.closest('.section');
+    if(section){
+      const tabId = section.id.replace('tab-','');
+      const btn = document.querySelector('[data-tab="'+tabId+'"]');
+      showTab(tabId, btn);
+      setTimeout(()=>{
+        el.scrollIntoView({behavior:'smooth', block:'center'});
+        el.style.outline='3px solid var(--pink-deep)';
+        el.style.borderRadius='14px';
+        setTimeout(()=>el.style.outline='', 2500);
+      }, 200);
     }
-    .wa-btn:hover { background: #1da851; }
+  }
+}
 
-  .owner-carousel{position:relative;width:220px;height:280px;border-radius:16px;overflow:hidden;border:4px solid var(--pink-soft);box-shadow:0 6px 28px rgba(214,51,132,0.6);flex-shrink:0;margin:0 auto}.carousel-slides{width:100%;height:100%}.carousel-slide{position:absolute;top:0;left:0;width:100%;height:100%;object-fit:cover;object-position:top center;opacity:0;transition:opacity 0.5s ease}.carousel-slide.active{opacity:1}@media(max-width:600px){.owner-carousel{width:160px;height:200px;border-radius:12px}}</style>
-</head>
-<body>
-
-<header>
- <div class="logo-wrap">
- <img src="orig_80.jpg" alt="Logo Láser y Manualidades Miriam">
- </div>
- <div class="owner-carousel"><div class="carousel-slides"><img src="miriam_foto2.jpg" class="carousel-slide active" alt="Miriam y equipo"><img src="miriam_foto1.jpg" class="carousel-slide" alt="Miriam encargada"><img src="miriam_foto3.jpg" class="carousel-slide" alt="Miriam encargada"></div></div><div class="header-text">
- <p class="eyebrow">Catálogo de productos</p>
- <h1 class="brand">Láser y Manualidades<br><em>Miriam</em></h1>
- <p class="tagline">Recuerdos personalizados hechos con amor ✦</p>
- </div>
-</header>
-
-
-
-
-
-<div class="nav-tabs">
- 
- 
- <button class="tab-btn" onclick="showTab('natalicios',this)">
- <span class="tab-icon">🪵</span> Natalicios 3D Niños
- </button>
-    <button class="tab-btn active" onclick="showTab('primer-ano',this)">
-    <span class="tab-icon">📸</span> Cuadros de Primer Año
-  </button>
-</div>
-
-<div id="tab-primer-ano" class="section">
-  <div class="grid">
-    <div class="card">
-      <img class="card-img" src="orig_81.jpg" alt="Cuadro Castillo Rosa — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Castillo Rosa — Primer Año</h3>
-        <p class="card-desc">Tablero en forma de castillo rosa con 12 marcos mensuales y foto central. Incluye datos de nacimiento.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_82.jpg" alt="Cuadro Safari — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Safari — Primer Año</h3>
-        <p class="card-desc">Marco múltiple con animales safari (hipopótamo, elefante, mono, jirafa, león). 12 ventanas mensuales con nombre.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_83.jpg" alt="Cuadro Arco Princesa — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Arco Princesa — Primer Año</h3>
-        <p class="card-desc">Tablero estilo arco con 12 marcos y cajas personalizadas con nombre y coronitas doradas.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_84.jpg" alt="Cuadro Osito Nube — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Osito Nube — Primer Año</h3>
-        <p class="card-desc">Tablero gris con osito sobre nube, corazones y estrellas. 12 marcos mensuales y datos de nacimiento.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_85.jpg" alt="Cuadro Niña Flores — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Niña Flores — Primer Año</h3>
-        <p class="card-desc">Tablero blanco y rosa con figura de niña, 12 marcos mensuales y colgantes con datos del bebé.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_86.jpg" alt="Cuadro Azul Estrellas — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Azul Estrellas — Primer Año</h3>
-        <p class="card-desc">Tablero blanco con estrellas azules y plateadas. 12 marcos mensuales y datos de nacimiento colgantes.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_87.jpg" alt="Cuadro Osito Marrón — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Osito Marrón — Primer Año</h3>
-        <p class="card-desc">Tablero en forma de osito con 12 marcos mensuales y foto central. Datos de nacimiento incluidos.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_88.jpg" alt="Cuadro Margaritas — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Margaritas — Primer Año</h3>
-        <p class="card-desc">Tablero arco con margaritas naranjas y 12 marcos mensuales. Sección de datos de nacimiento.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_89.jpg" alt="Cuadro Flores Tropicales — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Flores Tropicales — Primer Año</h3>
-        <p class="card-desc">Tablero arco con flores tropicales y abejas. 12 marcos rosas mensuales con nombre personalizado.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_90.jpg" alt="Cuadro Safari Animales — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Safari Animales — Primer Año</h3>
-        <p class="card-desc">Tablero arco con jirafa, elefante y hojas verdes. 12 marcos dorados mensuales.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_91.jpg" alt="Cuadro Conejita — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Conejita — Primer Año</h3>
-        <p class="card-desc">Tablero blanco con conejita bebé. 12 marcos mensuales y foto de primer día.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_92.jpg" alt="Cuadro Tropical Abejas — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Tropical Abejas — Primer Año</h3>
-        <p class="card-desc">Tablero arco tropical con flores y abejas. 12 marcos con bordes rosas personalizados.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_93.jpg" alt="Cuadro Superhéroes — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Superhéroes — Primer Año</h3>
-        <p class="card-desc">Tablero arco oscuro con Capitán América, Iron Man y Spiderman. 12 marcos mensuales.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_94.jpg" alt="Cuadro Mariposas — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Mariposas — Primer Año</h3>
-        <p class="card-desc">Tablero arco con mariposas lilas y marcos dorados. 12 fotos mensuales personalizadas.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_95.jpg" alt="Cuadro Osita Blanca — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Osita Blanca — Primer Año</h3>
-        <p class="card-desc">Tablero en forma de osa blanca con 12 fotos mensuales y nombre dorado.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_96.jpg" alt="Cuadro Astronauta — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Astronauta — Primer Año</h3>
-        <p class="card-desc">Tablero arco con astronauta en cohete y planeta. 12 marcos dorados mensuales.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_97.jpg" alt="Cuadro Minnie Mouse — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Minnie Mouse — Primer Año</h3>
-        <p class="card-desc">Tablero arco con Minnie Mouse, datos de nacimiento y 12 marcos mensuales.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_98.jpg" alt="Cuadro Mariposas Dorado — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Mariposas Dorado — Primer Año</h3>
-        <p class="card-desc">Tablero arco con mariposas decorativas y marcos dorados. 12 fotos del primer año.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_99.jpg" alt="Cuadro Lazo Rosa — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Lazo Rosa — Primer Año</h3>
-        <p class="card-desc">Tablero arco blanco con gran lazo rosa. 12 marcos mensuales y foto de recién nacido.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_100.jpg" alt="Cuadro Osito y León — Primer Año">
-      <div class="card-body">
-        <span class="card-tag">Cuadro Primer Año</span>
-        <h3 class="card-name">Cuadro Osito y León — Primer Año</h3>
-        <p class="card-desc">Tablero arco gris con osito y león. 12 marcos dorados mensuales con fotos reales.</p>
-        <a href="https://wa.me/51900007660?text=Hola%21%20Me%20interesa%20cotizar%20un%20Cuadro%20de%20Primer%20A%C3%B1o%20%F0%9F%8E%89" target="_blank" class="wa-btn">💬 Cotizar por WhatsApp</a>
-      </div>
-    </div>
-  </div>
-</div>
-
-<div id="tab-natalicios" class="section">
-
-<div style="background:#fff8f0;border:2px solid #e8a87c;border-radius:16px;padding:20px 16px;margin:0 0 24px;font-family:inherit;">
-  <h3 style="text-align:center;color:#c0632a;margin:0 0 14px;font-size:1.1rem;">💰 Lista de Precios — Natalicios</h3>
-  <div style="overflow-x:auto;">
-    <table style="width:100%;border-collapse:collapse;font-size:0.9rem;">
-      <thead>
-        <tr style="background:#e8a87c;color:#fff;">
-          <th style="padding:8px 12px;border-radius:8px 0 0 0;">Medida</th>
-          <th style="padding:8px 12px;">Sin Luces</th>
-          <th style="padding:8px 12px;border-radius:0 8px 0 0;">Con Luces LED</th>
-        </tr>
-      </thead>
-      <tbody>
-        <tr style="background:#fff3e8;">
-          <td style="padding:8px 12px;text-align:center;font-weight:bold;">30 cm</td>
-          <td style="padding:8px 12px;text-align:center;">S/ 80</td>
-          <td style="padding:8px 12px;text-align:center;">S/ 100</td>
-        </tr>
-        <tr style="background:#fff;">
-          <td style="padding:8px 12px;text-align:center;font-weight:bold;">40 cm</td>
-          <td style="padding:8px 12px;text-align:center;">S/ 100</td>
-          <td style="padding:8px 12px;text-align:center;">S/ 120</td>
-        </tr>
-        <tr style="background:#fff3e8;">
-          <td style="padding:8px 12px;text-align:center;font-weight:bold;">50 cm</td>
-          <td style="padding:8px 12px;text-align:center;">S/ 120</td>
-          <td style="padding:8px 12px;text-align:center;">S/ 150</td>
-        </tr>
-        <tr style="background:#fff;">
-          <td style="padding:8px 12px;text-align:center;font-weight:bold;">60 cm</td>
-          <td style="padding:8px 12px;text-align:center;">S/ 150</td>
-          <td style="padding:8px 12px;text-align:center;">S/ 190</td>
-        </tr>
-      </tbody>
-    </table>
-  </div>
-  <p style="text-align:center;color:#888;font-size:0.8rem;margin:10px 0 0;">✨ Todos los diseños son personalizados con el nombre del bebé</p>
-</div>
- <div class="grid"> <div class="card">
- <img class="card-img" src="orig_101.jpg" alt="Dinosaurio Benicio — Natalicio">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Dinosaurio Benicio — Natalicio</h3>
- <p class="card-desc">Placa circular con dinosaurio celeste, nubes y estrellas. Nombre en relieve dorado.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_102.jpg" alt="Submarino Amarillo — Natalicio">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Submarino Amarillo — Natalicio</h3>
- <p class="card-desc">Placa circular con submarino estilo vintage Diseño artístico único.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_103.jpg" alt="Náutico — Natalicio Grande">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Náutico — Natalicio Grande</h3>
- <p class="card-desc">Placa grande con bote, faro, nubes y sol. Incluye colgantes de datos.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_104.jpg" alt="Dinosaurio Tadeo — Natalicio">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Dinosaurio Tadeo — Natalicio</h3>
- <p class="card-desc">Placa con dinosaurio turquesa, hojas y flores. Colgantes con datos del bebé.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_105.jpg" alt="Pequeño Príncipe — Natalicio">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Pequeño Príncipe — Natalicio</h3>
- <p class="card-desc">Placa circular oscura con niño príncipe en la luna, planetas y estrellas doradas.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_106.jpg" alt="Dinosaurio Tyrese — Natalicio">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Dinosaurio Tyrese — Natalicio</h3>
- <p class="card-desc">Placa circular con dinosaurio azul y palmeras. Nombre en letras decorativas.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_107.jpg" alt="Dinosaurio Gian Lucca — Natalicio">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Dinosaurio Gian Lucca — Natalicio</h3>
- <p class="card-desc">Placa circular con dinosaurio verde, hojas tropicales y flores de colores.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_108.jpg" alt="Simba — Natalicio con Luces">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Simba — Natalicio con Luces</h3>
- <p class="card-desc">Placa circular blanca con Simba y hojas verdes. Incluye luces LED decorativas.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_109.jpg" alt="Safari Fabián Stefano — Natalicio">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Safari Fabián Stefano — Natalicio</h3>
- <p class="card-desc">Placa circular con jirafa, león y elefante en paisaje safari. Nombre en letras de color.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_110.jpg" alt="Winnie Pooh Paulo — Natalicio">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Winnie Pooh Paulo — Natalicio</h3>
- <p class="card-desc">Placa en forma de colmena con Winnie Pooh, abejas y miel. Nombre en letras blancas.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_111.jpg" alt="Cars Lucas Benjamin — Natalicio con Luces">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Cars Lucas Benjamin — Natalicio con Luces</h3>
- <p class="card-desc">Placa circular con Rayo McQueen en pista curva. Con luces LED en las estrellas.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_112.jpg" alt="Spiderman Rafael — Natalicio">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Spiderman Rafael — Natalicio</h3>
- <p class="card-desc">Placa circular con Spiderman en la ciudad. Fondo azul con destellos y edificios.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_113.jpg" alt="Elefante Ignacio — Natalicio con Luces">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Elefante Ignacio — Natalicio con Luces</h3>
- <p class="card-desc">Placa circular con elefante bebé, globos azules y nombre en cubos dorados. Con LED.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_114.jpg" alt="Safari Jeep Thiago — Natalicio">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Safari Jeep Thiago — Natalicio</h3>
- <p class="card-desc">Placa circular blanca con animales en jeep safari y hojas tropicales. Con colgantes.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_115.jpg" alt="Looney Tunes Eydhan — Natalicio con Luces">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Looney Tunes Eydhan — Natalicio con Luces</h3>
- <p class="card-desc">Placa circular con todos los personajes de Looney Tunes bebés. Con luces LED.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_116.jpg" alt="Zorrito Dante — Natalicio">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Zorrito Dante — Natalicio</h3>
- <p class="card-desc">Placa circular blanca con zorrito asomándose arriba y patitas abajo. Nombre en negro.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_117.jpg" alt="Pequeño Príncipe Elías — Natalicio">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Pequeño Príncipe Elías — Natalicio</h3>
- <p class="card-desc">Placa circular azul marino con Pequeño Príncipe, zorro, luna y planetas. Con colgantes dorados.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_118.jpg" alt="Osito Aviador Miguel — Natalicio">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Osito Aviador Miguel — Natalicio</h3>
- <p class="card-desc">Placa circular con osito piloto en avión y nubes blancas.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_119.jpg" alt="Safari Francesco — Natalicio">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Safari Francesco — Natalicio</h3>
- <p class="card-desc">Placa circular beige con elefante, jirafa y león. Hojas tropicales y colgantes de datos.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_120.jpg" alt="Safari Emiliano — Natalicio">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Safari Emiliano — Natalicio</h3>
- <p class="card-desc">Placa circular con mono, elefante, jirafa y cebra entre hojas verdes.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_121.jpg" alt="Santino — Natalicio Globo Aerostático">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Santino — Natalicio Globo Aerostático</h3>
- <p class="card-desc">Placa circular con jirafa bebé en globo aerostático azul y nubes blancas.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_122.jpg" alt="Santiago & Alessio Brothers Forever — Natalicio">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Santiago & Alessio Brothers Forever — Natalicio</h3>
- <p class="card-desc">Placa circular con superhéroes (Batman, Wolverine, Spiderman, Iron Man, Capitán América) personalizada para dos hermanos.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_123.jpg" alt="Vasco Mateo — Natalicio Musical">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Vasco Mateo — Natalicio Musical</h3>
- <p class="card-desc">Placa circular con figuras de rockstars y notas musicales sobre fondo.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_124.jpg" alt="Inicial Safari — Natalicio">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Inicial Safari — Natalicio</h3>
- <p class="card-desc">Placa circular con letra inicial, animales safari (hipopótamo, mono, elefante, león, jirafa) y hojas tropicales.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_125.jpg" alt="Aidan — Natalicio Avión">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Aidan — Natalicio Avión</h3>
- <p class="card-desc">Placa circular azul con avión, estrellas doradas, sol y nubes. Con colgantes de datos.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_126.jpg" alt="Adrianito — Natalicio Elefante">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Adrianito — Natalicio Elefante</h3>
- <p class="card-desc">Placa circular gris con elefante bebé en globos de colores, nubes, estrellas y nombre. Con 3 colgantes.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_127.jpg" alt="Adrián Alessandro — Natalicio Osito Aviador">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Adrián Alessandro — Natalicio Osito Aviador</h3>
- <p class="card-desc">Placa circular con osito piloto en avión, globos y lazo azul. Con 3 colgantes de datos.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_128.jpg" alt="Omar Enrique — Natalicio Elefante">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Omar Enrique — Natalicio Elefante</h3>
- <p class="card-desc">Placa circular azul claro con elefante acuarela, luna, nubes y estrellas.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_129.jpg" alt="Ethan Gael — Natalicio Osito y Globo">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Ethan Gael — Natalicio Osito y Globo</h3>
- <p class="card-desc">Placa ovalada gris con osito piloto en avión, globo aerostático azul y nubes.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_130.jpg" alt="Héctor Alexander — Natalicio Harry Potter">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Héctor Alexander — Natalicio Harry Potter</h3>
- <p class="card-desc">Placa circular azul marino con snitch dorada y nombre estilo Harry Potter. Con 3 colgantes.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_131.jpg" alt="Esteban Nicolás — Natalicio Safari">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Esteban Nicolás — Natalicio Safari</h3>
- <p class="card-desc">Placa circular verde menta con animales safari (jirafa, cebra, elefante, perezoso, león, mono).</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_132.jpg" alt="Welcome Baby Liam — Natalicio León">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Welcome Baby Liam — Natalicio León</h3>
- <p class="card-desc">Placa circular blanca con león bebé naranja y hojas tropicales verdes.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_133.jpg" alt="Iosef Emir — Natalicio Osito Arcoíris">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Iosef Emir — Natalicio Osito Arcoíris</h3>
- <p class="card-desc">Placa circular blanca con osito, arcoíris boho y globos. Con 3 colgantes en forma de nube.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_134.jpg" alt="Alfonso Santiago — Natalicio Globos">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Alfonso Santiago — Natalicio Globos</h3>
- <p class="card-desc">Letrero de bienvenida con globos aerostáticos, animales y nombre en script.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_135.jpg" alt="Kev Fernando — Natalicio Marinero">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Kev Fernando — Natalicio Marinero</h3>
- <p class="card-desc">Placa circular con faro, velero, olas y sol. Con 4 colgantes.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_136.jpg" alt="Anthony — Natalicio Superhéroes">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Anthony — Natalicio Superhéroes</h3>
- <p class="card-desc">Placa circular con superhéroes baby (Capitán América, Spiderman, Batman, Iron Man, Superman, Hulk).</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_137.jpg" alt="Thiago — Natalicio Osito y Globo">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Thiago — Natalicio Osito y Globo</h3>
- <p class="card-desc">Placa circular con osito en avión, globo aerostático azul y nubes blancas.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_138.jpg" alt="Enzo Roberto — Natalicio Safari Jeep">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Enzo Roberto — Natalicio Safari Jeep</h3>
- <p class="card-desc">Placa circular salmón con animales en jeep safari, hojas tropicales y 3 colgantes con hoja.</p>
- </div>
- </div>
- <div class="card">
- <img class="card-img" src="orig_139.jpg" alt="Valentino — Natalicio Perritos">
- <div class="card-body">
- <span class="card-tag">Natalicio 3D</span>
- <h3 class="card-name">Valentino — Natalicio Perritos</h3>
- <p class="card-desc">Placa circular blanca con dos perritos, hojas monstera y estrellas azules. Con 3 colgantes.</p>
- </div>
- </div>
-    <div class="card">
-      <img class="card-img" src="orig_140.jpg" alt="Arturo Iturbe Aldavero — Natalicio Batman">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Arturo Iturbe Aldavero — Natalicio Batman</h3>
-        <p class="card-desc">Placa circular gris con Batman baby, silueta de ciudad, luna y estrellas. Con 4 colgantes.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_141.jpg" alt="Liann — Natalicio Safari">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Liann — Natalicio Safari</h3>
-        <p class="card-desc">Placa circular con elefante, jirafa y león apilados. Hojas tropicales y estrellas doradas. Con colgantes en forma de estrella.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_142.jpg" alt="Milan — Natalicio Simba">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Milan — Natalicio Simba</h3>
-        <p class="card-desc">Placa circular con Simba bebé, hojas verdes y nubes. Con 3 colgantes.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_143.jpg" alt="Thiago Boho — Natalicio Safari">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Thiago Boho — Natalicio Safari</h3>
-        <p class="card-desc">Placa circular con elefante, cebra, oso y jirafa estilo boho en tonos gris y marrón.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_144.jpg" alt="Leo — Natalicio Safari">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Leo — Natalicio Safari</h3>
-        <p class="card-desc">Placa circular blanca con elefante, león, jirafa, hipopótamo y mono. Hojas monstera verdes y estrellas doradas. Con 3 colgantes.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_145.jpg" alt="Ares — Natalicio Rey León">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Ares — Natalicio Rey León</h3>
-        <p class="card-desc">Placa circular con familia del Rey León (Simba, Nala y bebé). Hojas tropicales y estrellas doradas.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_146.jpg" alt="Noah Jesús — Natalicio Safari">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Noah Jesús — Natalicio Safari</h3>
-        <p class="card-desc">Placa circular con jirafa y león bebé. Corona de hojas monstera verdes y estrellas amarillas. Con 3 colgantes.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_147.jpg" alt="Felipe Mateo — Natalicio Astronauta">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Felipe Mateo — Natalicio Astronauta</h3>
-        <p class="card-desc">Placa circular azul oscuro con astronauta en cohete, planetas, estrellas de colores. Con 3 colgantes.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_148.jpg" alt="Samuel — Natalicio Simba">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Samuel — Natalicio Simba</h3>
-        <p class="card-desc">Placa circular con Simba bebé y letras doradas espejadas. Fondo bicolor con hojas y nubes.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_149.jpg" alt="Liam — Natalicio Safari con Luces">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Liam — Natalicio Safari con Luces</h3>
-        <p class="card-desc">Placa circular con luces LED, elefante, jirafa y león. Hojas monstera y estrellas doradas.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_150.jpg" alt="Mateo — Natalicio Winnie Pooh y Tigger">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Mateo — Natalicio Winnie Pooh y Tigger</h3>
-        <p class="card-desc">Placa circular blanca con Winnie Pooh y Tigger bebés. Panales y abejas decorativas. Con 4 colgantes en forma de tarro de miel.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_151.jpg" alt="Travis Jr — Natalicio Winnie Pooh">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Travis Jr — Natalicio Winnie Pooh</h3>
-        <p class="card-desc">Placa circular con Winnie Pooh, panales de miel y abejas en tonos dorados y marrones.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_152.jpg" alt="Jeremías — Natalicio Winnie Pooh">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Jeremías — Natalicio Winnie Pooh</h3>
-        <p class="card-desc">Placa circular blanca con Winnie Pooh y abejas decorativas.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_153.jpg" alt="Nicolás Enrique — Natalicio Osito Luna">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Nicolás Enrique — Natalicio Osito Luna</h3>
-        <p class="card-desc">Placa circular blanca con osito sobre nube y luna. Estrellas de colores y nubes. Con 4 colgantes.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_154.jpg" alt="Julián — Natalicio Osito">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Julián — Natalicio Osito</h3>
-        <p class="card-desc">Placa circular blanca con osito marrón, ramas verdes y luces LED. Con 3 colgantes.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_155.jpg" alt="Mateo — Natalicio Winnie Pooh con Luces">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Mateo — Natalicio Winnie Pooh con Luces</h3>
-        <p class="card-desc">Placa circular con Tigger, Winnie, Igor y Piglet. Estrellas y luces LED integradas.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_156.jpg" alt="Juan Pablo — Natalicio Safari con Luces">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Juan Pablo — Natalicio Safari con Luces</h3>
-        <p class="card-desc">Placa circular salmón con elefante, jirafa y león. Hojas tropicales, estrellas y luces LED. Con 3 colgantes en estrella.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_157.jpg" alt="Berkan Ava — Natalicio Globos y Animales">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Berkan Ava — Natalicio Globos y Animales</h3>
-        <p class="card-desc">Letrero con dos globos aerostáticos iluminados, animales colgantes y nombre en script.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_158.jpg" alt="Diego y Emilio — Natalicio Monster Trucks">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Diego y Emilio — Natalicio Monster Trucks</h3>
-        <p class="card-desc">Placa circular azul oscuro con dos monster trucks en llamas y nombre en banner.</p>
-      </div>
-    </div>
-    <div class="card">
-      <img class="card-img" src="orig_159.jpg" alt="Thiago — Natalicio Osito y Globo Aerostático">
-      <div class="card-body">
-        <span class="card-tag">Natalicio 3D</span>
-        <h3 class="card-name">Thiago — Natalicio Osito y Globo Aerostático</h3>
-        <p class="card-desc">Placa circular con osito en avión, globo aerostático azul y nubes blancas.</p>
-      </div>
-    </div>
-</div>
-</div>
-
-<div class="contact">
- <div>
- <h3>¿Tienes un pedido especial?</h3>
- <p>Todos los diseños son personalizados con el nombre y fecha que elijas.</p>
- </div>
- <a class="contact-btn" href="https://wa.me/51900007660?text=Hola%20Miriam!%20Me%20interesa%20cotizar%20un%20recuerdo%20personalizado%20%F0%9F%8E%80" target="_blank">✨ Solicitar cotización</a>
-</div>
-
-<footer>
- <div style="display:flex;justify-content:center;gap:14px;margin-bottom:16px;flex-wrap:wrap;">
- <a href="https://www.facebook.com/share/1Gihia9bPG/" target="_blank" style="display:flex;align-items:center;gap:6px;background:#1877F2;color:#fff;padding:9px 16px;border-radius:24px;font-size:13px;font-weight:600;text-decoration:none;">
- <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M24 12.073c0-6.627-5.373-12-12-12s-12 5.373-12 12c0 5.99 4.388 10.954 10.125 11.854v-8.385H7.078v-3.47h3.047V9.43c0-3.007 1.792-4.669 4.533-4.669 1.312 0 2.686.235 2.686.235v2.953H15.83c-1.491 0-1.956.925-1.956 1.874v2.25h3.328l-.532 3.47h-2.796v8.385C19.612 23.027 24 18.062 24 12.073z"/></svg>Facebook
- </a>
- <a href="https://www.tiktok.com/@laserymanualidadesmiriam" target="_blank" style="display:flex;align-items:center;gap:6px;background:#000;color:#fff;padding:9px 16px;border-radius:24px;font-size:13px;font-weight:600;text-decoration:none;">
- <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M19.59 6.69a4.83 4.83 0 01-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 01-2.88 2.5 2.89 2.89 0 01-2.89-2.89 2.89 2.89 0 012.89-2.89c.28 0.54.04.79.1V9.01a6.33 6.33 0 00-.79-.05 6.34 6.34 0 00-6.34 6.34 6.34 6.34 0 006.34 6.34 6.34 6.34 0 006.33-6.34V8.69a8.27 8.27 0 004.84 1.55V6.79a4.85 4.85 0 01-1.07-.1z"/></svg>TikTok
- </a>
- <a href="https://www.instagram.com/laserymanualidadesmiriam?igsh=djRsdzIwNGloYjFm" target="_blank" style="display:flex;align-items:center;gap:6px;background:linear-gradient(45deg,#f09433,#e6683c,#dc2743,#cc2366,#bc1888);color:#fff;padding:9px 16px;border-radius:24px;font-size:13px;font-weight:600;text-decoration:none;">
- <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M12 2.163c3.204 0 3.584.012 4.85.07 3.252.148 4.771 1.691 4.919 4.919.058 1.265.069 1.645.069 4.849 0 3.205-.012 3.584-.069 4.849-.149 3.225-1.664 4.771-4.919 4.919-1.266.058-1.644.07-4.85.07-3.204 0-3.584-.012-4.849-.07-3.26-.149-4.771-1.699-4.919-4.92-.058-1.265-.07-1.644-.07-4.849 0-3.204.013-3.583.07-4.849.149-3.227 1.664-4.771 4.919-4.919 1.266-.057 1.645-.069 4.849-.069zM12 0C8.741 0 8.333.014 7.053.072 2.695.272.273 2.69.073 7.052.014 8.333 0 8.741 0 12c0 3.259.014 3.668.072 4.948.2 4.358 2.618 6.78 6.98 6.98C8.333 23.986 8.741 24 12 24c3.259 0 3.668-.014 4.948-.072 4.354-.2 6.782-2.618 6.979-6.98.059-1.28.073-1.689.073-4.948 0-3.259-.014-3.667-.072-4.947-.196-4.354-2.617-6.78-6.979-6.98C15.668.014 15.259 0 12 0zm0 5.838a6.162 6.162 0 100 12.324 6.162 6.162 0 000-12.324zM12 16a4 4 0 110-8 4 4 0 010 8zm6.406-11.845a1.44 1.44 0 100 2.881 1.44 1.44 0 000-2.881z"/></svg>Instagram
- </a>
- <a href="https://wa.me/51900007660" target="_blank" style="display:flex;align-items:center;gap:6px;background:#25D366;color:#fff;padding:9px 16px;border-radius:24px;font-size:13px;font-weight:600;text-decoration:none;">
- <svg width="15" height="15" viewBox="0 0 24 24" fill="white"><path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0.16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413z"/></svg>WhatsApp
- </a>
- </div>
- <p style="margin-bottom:6px;">© <strong>Láser y Manualidades Miriam</strong> &nbsp;·&nbsp; Todos los derechos reservados</p>
- <p style="font-size:12px;margin-top:4px;font-weight:500;">📞 +51 900 007 660</p>
-</footer>
-
-<script>
- function showTab(tab,btn){
- document.querySelectorAll('.section').forEach(s=>s.classList.remove('active'));
- document.querySelectorAll('.tab-btn').forEach(b=>b.classList.remove('active'));
- document.getElementById('tab-'+tab).classList.add('active');
- btn.classList.add('active');
- }
+window.addEventListener('DOMContentLoaded', ()=>{
+  updateCounts();
+  handleHash();
+});
+window.addEventListener('hashchange', handleHash);
 </script>
-<script src="nina.js"></script><script>var cs=document.querySelectorAll('.carousel-slide'),ci=0;setInterval(function(){cs[ci].classList.remove('active');ci=(ci+1)%cs.length;cs[ci].classList.add('active');},2000);</script>
-<!-- LIGHTBOX -->
-<div id="lb-overlay"><span id="lb-close">&#10005;</span><img id="lb-img" src="" alt=""></div>
+<script src="nina.js"></script>
+<script>var cs=document.querySelectorAll('.carousel-slide'),ci=0;setInterval(function(){cs[ci].classList.remove('active');ci=(ci+1)%cs.length;cs[ci].classList.add('active');},2000);</script>
+
 <script>
 (function(){
   // Lightbox
-  var ov=document.getElementById('lb-overlay'),
-      im=document.getElementById('lb-img'),
-      cl=document.getElementById('lb-close');
-  document.querySelectorAll('.card-img').forEach(function(img){
-    img.addEventListener('click',function(){
-      im.src=this.src; im.alt=this.alt;
-      ov.classList.add('open');
-    });
+  var ov=document.getElementById('lb-overlay');
+  if(!ov){ov=document.createElement('div');ov.id='lb-overlay';ov.innerHTML='<button id="lb-close" style="position:absolute;top:16px;right:20px;font-size:28px;background:none;border:none;color:#fff;cursor:pointer;z-index:10000">✕</button><img id="lb-img" src="" alt="">';document.body.appendChild(ov);}
+  var img=document.getElementById('lb-img');
+  var cls=document.getElementById('lb-close');
+  document.addEventListener('click',function(e){
+    var ci=e.target.closest('.card-img');
+    if(ci){ov.classList.add('open');img.src=ci.src;}
   });
-  function close(){ov.classList.remove('open');im.src='';}
-  cl.addEventListener('click',close);
-  ov.addEventListener('click',function(e){if(e.target===ov)close();});
-  document.addEventListener('keydown',function(e){if(e.key==='Escape')close();});
+  function closeLB(){ov.classList.remove('open');img.src='';}
+  if(cls) cls.addEventListener('click',closeLB);
+  ov.addEventListener('click',function(e){if(e.target===ov)closeLB();});
+  document.addEventListener('keydown',function(e){if(e.key==='Escape')closeLB();});
 })();
 </script>
-
 <script>
 // ===== SELECTOR CANTIDAD =====
-function actualizarPrecio(uid, nombre) {
-  var sel = document.getElementById('sel_' + uid);
-  var opt = sel.options[sel.selectedIndex];
-  var precio = opt.value;
-  var label = opt.getAttribute('data-label');
-  document.getElementById('precio_' + uid).textContent = 'Total: S/ ' + precio;
-  var msg = encodeURIComponent('Hola, quiero cotizar: ' + nombre + ' — Cantidad: ' + label + ' — Precio: S/ ' + precio);
-  document.getElementById('wa_' + uid).href = 'https://wa.me/51900007660?text=' + msg;
+function actualizarPrecio(cardId, nombre){
+  var sel=document.getElementById('sel_'+cardId);
+  if(!sel) return;
+  var opt=sel.options[sel.selectedIndex];
+  var precio=opt.value;
+  var label=opt.dataset.label||opt.text;
+  var pd=document.getElementById('precio_'+cardId);
+  if(pd) pd.textContent='Total: S/ '+precio;
+  var wa=document.getElementById('wa_'+cardId);
+  if(wa){
+    var msg='Hola, quiero cotizar: '+nombre+' — Cantidad: '+label+' — Precio: S/ '+precio;
+    wa.href='https://wa.me/51900007660?text='+encodeURIComponent(msg);
+  }
 }
-
-// ===== BUSCADOR =====
-function buscarProductos(query) {
-  var q = query.toLowerCase().trim();
-  var cards = document.querySelectorAll('.section.active .card');
-  var found = 0;
-  cards.forEach(function(card) {
-    var name = card.querySelector('.card-name');
-    if (!name) return;
-    if (!q || name.textContent.toLowerCase().includes(q)) {
-      card.classList.remove('hidden');
-      found++;
-    } else {
-      card.classList.add('hidden');
-    }
+function buscarProductos(q){
+  var query=q.toLowerCase().trim();
+  var active=document.querySelector('.section.active');
+  if(!active) return;
+  active.querySelectorAll('.card').forEach(function(c){
+    var name=c.querySelector('.card-name');
+    if(!name){c.style.display='';return;}
+    c.style.display=(!query||name.textContent.toLowerCase().includes(query))?'':'none';
   });
-  var noRes = document.getElementById('no-results');
-  if (noRes) noRes.classList.toggle('show', found === 0 && q.length > 0);
 }
 </script>
 </body>
